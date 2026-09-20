@@ -1,0 +1,125 @@
+generated: '2026-09-19'
+method: searched
+probe: true
+source: https://broke2builtai.com/privacy/ (Last updated July 26, 2026), https://broke2builtai.com/terms/, https://broke2builtai.com/about/, https://broke2builtai.com/editorial-standards/, https://broke2builtai.com/disclosure/, plus live probes of the conventional paths on 2026-09-19
+paths_probed:
+- {url: 'https://broke2builtai.com/accessibility', status: 404}
+- {url: 'https://broke2builtai.com/accessibility/', status: 404}
+- {url: 'https://broke2builtai.com/legal/subprocessors', status: 404}
+- {url: 'https://broke2builtai.com/legal/dpa', status: 404}
+- {url: 'https://broke2builtai.com/privacy/requests', status: 404}
+- {url: 'https://broke2builtai.com/transparency', status: 404}
+- {url: 'https://broke2builtai.com/trust', status: 404}
+- {url: 'https://broke2builtai.com/security', status: 404}
+- {url: 'https://broke2builtai.com/security/sbom', status: 404}
+- {url: 'https://broke2builtai.com/ai', status: 404}
+- {url: 'https://broke2builtai.com/ai/transparency', status: 404}
+- {url: 'https://broke2builtai.com/legal/report-content', status: 404}
+- {url: 'https://broke2builtai.com/privacy/', status: 200}
+- {url: 'https://broke2builtai.com/terms/', status: 200}
+- {url: 'https://broke2builtai.com/about/', status: 200}
+- {url: 'https://broke2builtai.com/editorial-standards/', status: 200}
+- {url: 'https://broke2builtai.com/disclosure/', status: 200}
+summary: >-
+  A small independent publisher's posture: a plain-language privacy policy that names the data-subject rights it
+  honours and the third parties it relies on, and an unusually explicit account of where AI is used. No dedicated
+  legal sub-pages exist (every conventional /legal/*, /accessibility, /transparency, /ai path 404s), so the
+  three signals below are sections of the privacy policy and the about page rather than standalone documents.
+  Nothing is recorded for SBOM, support lifetime, accessibility conformance, training-data summary, GPC, data
+  residency, incident notification, age assurance, notice-and-action, transparency report or exit assistance —
+  none is published. The privacy policy explicitly scopes itself to the website (broke2builtai.com); it does not
+  mention api.broke2builtai.com, zero or aiim, whose only published data handling is AIIM's statement that DMs are
+  stored server-side and that public rooms are watched by humans (skill.md §12).
+signals:
+  data_subject_request:
+    url: https://broke2builtai.com/privacy/
+    section: '6. Your privacy rights'
+    channel: https://broke2builtai.com/contact/ (contact form; "a real person reads every message")
+    stated_sla: 'we will respond within the timeframe required by applicable law'
+    rights_named: [access, correction, deletion, restriction of processing, objection, data portability (EU/EEA/UK GDPR), withdrawal of consent, right to know / request deletion / opt out of sale or sharing (California CCPA/CPRA)]
+    evidence:
+    - source: https://broke2builtai.com/privacy/
+      http_status: 200
+      fetched: '2026-09-19'
+      quote: >-
+        "If you are in the EU/EEA or UK (GDPR): you have the right to access, correct, delete, or restrict processing
+        of your personal data, to object to processing, and to data portability. Our legal basis for processing
+        contact-form and newsletter data is your consent, which you may withdraw at any time. If you are a
+        California resident (CCPA/CPRA): you have the right to know what personal information we collect, to
+        request deletion, and to opt out of the "sale" or "sharing" of personal information. … To exercise any of
+        these rights, contact us through our contact page and we will respond within the timeframe required by
+        applicable law."
+    note: A documented request process with a named channel and a (deferential) response commitment; a section of the privacy policy, not a dedicated intake page (/privacy/requests 404), and no API endpoint exists for it.
+  subprocessors:
+    url: https://broke2builtai.com/privacy/
+    section: '4. Third-party services we rely on'
+    dated: '2026-07-26'
+    entries:
+    - {vendor: Cloudflare, purpose: website hosting and content delivery}
+    - {vendor: Z.ai (GLM), purpose: language-model suggestions — only when a "suggest wording" button is pressed; "we don't keep a copy"}
+    - {vendor: YouTube (Google), purpose: embedded videos on some pages; may set cookies when played}
+    evidence:
+    - source: https://broke2builtai.com/privacy/
+      http_status: 200
+      fetched: '2026-09-19'
+      quote: >-
+        "Cloudflare — website hosting and content delivery. Z.ai (GLM) — only when you press a "suggest wording"
+        button in one of our writing tools. … YouTube (Google) — some pages may embed videos … That is the
+        complete list of third parties this Site loads. As of July 26, 2026 the homepage loads zero third-party
+        scripts. We previously ran Grow by Mediavine and removed it once we traced what it actually loaded"
+    note: >-
+      A closed, dated ("That is the complete list … As of July 26, 2026") list of third parties with the purpose of
+      each and a removal history — the substance of a subprocessor list for a website, carried inside the privacy
+      policy rather than at /legal/subprocessors (404). It covers the website only; the API hosts' processors
+      (the x402 facilitator facilitator.payai.network is named in the API root catalog; Cloudflare Workers per
+      the npm README) are not listed in any legal page.
+  ai_transparency:
+    url: https://broke2builtai.com/privacy/
+    section: '2. Information we collect — Tool inputs (where AI is used, and which provider)'
+    also: [https://broke2builtai.com/about/, https://broke2builtai.com/editorial-standards/]
+    evidence:
+    - source: https://broke2builtai.com/privacy/
+      http_status: 200
+      fetched: '2026-09-19'
+      quote: >-
+        "Where a page offers AI-written suggestions — currently only the course builder at /learn/ — pressing that
+        button sends what you typed to our AI provider, Z.ai, which returns the draft. We do not store what you
+        type."
+    - source: https://broke2builtai.com/about/
+      http_status: 200
+      fetched: '2026-09-19'
+      quote: >-
+        "He built coding harnesses for GPT-2 by hand; today, he often chooses to direct AI agents through the
+        implementation. He shapes the problem, decides what to build, and evaluates the result. … The agents also
+        help with research, maintenance, testing, publishing, and the everyday work of keeping projects useful."
+    - source: https://broke2builtai.com/editorial-standards/
+      http_status: 200
+      fetched: '2026-09-19'
+      quote: >-
+        "Human review. A person reviews every guide before it publishes … Nothing goes live on autopilot." and, on
+        tools: "they don't invent facts about your life, your product, or the person you're writing about. You
+        review and finish everything before you use it."
+    - source: https://broke2builtai.com/ (meta description, JSON-LD)
+      http_status: 200
+      fetched: '2026-09-19'
+      quote: '"Built by Anthony Snider and AI."'
+    note: >-
+      Recorded because the substance is present — the site states which feature produces AI-generated output and
+      which model provider produces it, that AI agents build and maintain the software, and that a human reviews
+      published guides — even though it is spread across the privacy policy, the about page and the editorial
+      standards rather than a dedicated AI disclosure (/ai and /ai/transparency 404). The agent surfaces are
+      disclosed as AI on their face: ZERO's llms.txt and openapi describe "an autonomous AI agent"; AIIM's
+      handbook states "Humans only spectate — this network is agents-only". No statement addresses EU AI Act
+      Article 50 by name.
+not_found:
+  sbom: no SBOM published (never derived)
+  support_lifetime: no support period stated
+  accessibility_conformance: no VPAT/WCAG statement (/accessibility 404)
+  training_data_summary: none
+  global_privacy_control: 'not stated — the policy says "we serve no interest-based ads at all, so there is no ad-targeting opt-out to give you" but does not mention GPC; honored is therefore NOT set (never probed by header)'
+  data_residency: none (hosting named as Cloudflare; no region commitment)
+  incident_notification: none
+  age_assurance: 'none — §7 "Children''s privacy" is a general-audience statement ("not directed to children under 13"), not an age-assurance mechanism'
+  notice_and_action: none
+  transparency_report: 'none — AIIM''s GET /api/revenue and /api/observability publish live platform figures, which is operational openness, not a DSA-style transparency report'
+  exit_assistance: none

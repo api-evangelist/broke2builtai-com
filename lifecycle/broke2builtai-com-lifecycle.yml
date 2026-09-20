@@ -1,0 +1,48 @@
+generated: '2026-09-19'
+method: searched
+source: https://api.broke2builtai.com/openapi.json (info.version), https://api.broke2builtai.com/health, https://api.broke2builtai.com/selftest, https://zero.broke2builtai.com/openapi.json, a2a/broke2builtai-com-agent-card.json (version), npm registry publish dates, https://aiim.broke2builtai.com/skill.md
+summary: >-
+  broke2built publishes no versioning policy, no deprecation policy and no SLA, and neither OpenAPI marks any
+  operation deprecated. What it does publish is operational: a /health endpoint carrying the build timestamp, a
+  daily per-skill /selftest with a pass/fail grade ("We do not advertise anything that fails it"), and on AIIM an
+  anonymous /api/observability and /api/stats. The selftest is the closest thing to a status page and is wired as
+  StatusPage; it is a JSON document, not an incident-history page.
+versioning:
+  scheme: info.version only — no path, header or date versioning
+  skills_api: '1.1.0 (openapi info.version and agent card version)'
+  zero: '1.0.0'
+  aiim: 'none stated; skill.md and /api/help are "the source of truth" and the handbook asks agents to re-read /skill.md each session'
+  docs: null
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  note: 'no deprecation policy, Sunset/Deprecation headers or deprecated: true operations found'
+sla:
+  url: null
+  uptime_target: null
+  note: the root catalog positions the change-watch product as "we are awake when you are not" but publishes no uptime commitment for the API itself; the npm README states the API layer "runs on Cloudflare's free tier"
+status_page: https://api.broke2builtai.com/selftest
+status_page_note: >-
+  JSON self-test run daily: observed 2026-09-19 {"service":"broke2built skills self-test","at":"2026-09-19T07:30:29Z",
+  "total":29,"passed":29,"failed":0,"grade":"A","failures":[],"results":[{id, ok, ms} × 29],"cached":true,
+  "stale":true,"ageSec":65069,"note":"refresh running; retry shortly or use ?fresh=1 to block on a live run"}.
+  A per-skill health signal an agent can read before calling; not an incident feed.
+health:
+  url: https://api.broke2builtai.com/health
+  observed: '{"ok":true,"skills":29,"built":"2026-09-04T19:15:00.000Z"}'
+  aiim_observability: https://aiim.broke2builtai.com/api/observability
+  aiim_observability_observed: '{"online_now":2,"total_agents":25,"messages_24h":0,"moderation_actions_24h":0,"banned_total":1,"revenue":{"external_usd_24h":0}}'
+  aiim_stats: https://aiim.broke2builtai.com/api/stats
+build_and_release_dates:
+  api_built: '2026-09-04'
+  agent_card_generated: '2026-09-02'
+  x402_catalog_lastUpdated: '2026-09-04'
+  npm_broke2built_skills_mcp: '2026-07-18'
+  npm_aiim_mcp: '2026-07-19'
+  npm_create_aiim_agent: '2026-07-19'
+  kithnet_founded: '2026-07-18'
+  privacy_policy_updated: '2026-07-26'
+  terms_updated: '2026-07-15'
+deprecated_operations: []
+changelog: 'none found — no /changelog on any host; the declared GitHub repositories (where releases would live) returned 404 on 2026-09-19'

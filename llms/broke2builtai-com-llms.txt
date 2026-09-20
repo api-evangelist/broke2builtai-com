@@ -1,0 +1,72 @@
+# Broke to Built
+
+> Broke to Built is Anthony Snider’s independent company, building useful software, open research, autonomous experiments, games, and practical guides. Its website introduces the whole body of work. Paid tools and experimental research have different purposes and are identified below.
+
+## Start here
+- [Company homepage](https://broke2builtai.com/): the studio, selected tools, research, experiments, and videos.
+- [Our story](https://broke2builtai.com/story/): why the company exists and what it is working toward.
+- [About the founder and company](https://broke2builtai.com/about/): Anthony Snider is an engineer who works with AI agents.
+- [Free library](https://broke2builtai.com/library/): searchable guides and browser tools, with work, everyday admin, and love-and-loss categories.
+
+## Software on Apify
+These products require an Apify account. Usage is paid. The linked listing is the source for current pricing, input requirements, limits, and API instructions.
+- [Audio & Video to Text](https://apify.com/eliai/audio-transcriber-whisper): transcribe recordings into text and timed subtitles.
+- [Excel to JSON](https://apify.com/eliai/excel-to-json): convert spreadsheet files into structured JSON.
+- [Base64 Encoder / Decoder](https://apify.com/eliai/base64-encoder-decoder): batch text and file encoding or decoding, including downloadable large outputs.
+- [All Broke to Built actors](https://apify.com/eliai): the company’s Apify profile and product listings.
+- [Podcast transcription workflow for n8n](https://github.com/lordbasilaiassistant-sudo/b2b-assets/tree/main/n8n/podcast-agency-transcripts): free workflow source and setup instructions. Processes new episodes across RSS feeds using the paid transcription actor; requires the user’s own n8n and Apify configuration. Its event-charge budgets do not cover every possible platform fee.
+
+## Open research and autonomous experiments
+- [Abundance](https://lordbasilaiassistant-sudo.github.io/Abundance/): cited research and interactive calculators about global production, basic needs, and distribution. [Source and methodology](https://github.com/lordbasilaiassistant-sudo/Abundance). Research conclusions should be read with their assumptions and limitations.
+- [ZERO](https://zero.broke2builtai.com/): an autonomous earning experiment governed by a rule that nobody funds its wallet. The public dashboard shows methods and attempts. This is an experiment, not a promise of investment returns or a service for depositing money.
+- [ZERO’s public wallet record](https://base.blockscout.com/address/0xC94929d14435D80dd04b3206BfEA9F5dEBAbD57A): inspect the record independently; do not infer current earnings from this directory.
+- [AIIM](https://aiim.broke2builtai.com/): the agent communication and collaboration world, with a spectator interface. [Agent handbook](https://aiim.broke2builtai.com/skill.md).
+- [Games and experiments](https://broke2builtai.com/play/): the broader collection of playable and interactive projects. Experiments are not all commercial products.
+- [Public source repositories](https://github.com/lordbasilaiassistant-sudo): inspect source and each repository’s own license and status.
+
+## Watch
+- [Broke to Built on YouTube](https://www.youtube.com/@BrokeToBuiltai): tool demonstrations and public-domain film publishing.
+- [Film archive](https://broke2builtai.com/public-domain/): the site’s media wing.
+
+## Developer interfaces
+- [Agent Skills API documentation](https://api.broke2builtai.com/): current skills, input contracts and access terms.
+- [Agent discovery document](https://broke2builtai.com/.well-known/agent.json): discovery information for the separate skills API. It is not a declaration that every project on this company site is an API.
+
+## Contact and reading policy
+- [Contact](https://broke2builtai.com/contact/): product questions, feedback, corrections and project enquiries. Company contact: eli@broke2builtai.com.
+- [Editorial standards](https://broke2builtai.com/editorial-standards/) · [Disclosure](https://broke2builtai.com/disclosure/) · [Privacy](https://broke2builtai.com/privacy/) · [Terms](https://broke2builtai.com/terms/).
+- [Sitemap](https://broke2builtai.com/sitemap-index.xml) · [Full company map and guide text](https://broke2builtai.com/llms-full.txt).
+
+Guide text is free to read without an account. Some non-sensitive guides link to optional paid resources, disclosed on their pages. Guides about acute loss contain no commerce. Quote the relevant page and preserve its qualifications, especially for health, legal, financial and research topics. This index contains no current revenue, uptime or customer-count claims.
+
+## Free browser tools
+- [ATS Resume Checker](https://broke2builtai.com/tools/ats-resume-checker/): browser tool; see the page for its actual checks and limits.
+
+## Guides (27)
+- [ATS-Friendly Resume Without Sounding Like a Robot](https://broke2builtai.com/guides/ats-friendly-resume-without-sounding-like-a-robot/): Make your resume ATS-friendly without sounding like a robot: real parsing rules, keyword tactics, before/after bullet examples, and a free template.
+- [ChatGPT Prompt for a Two Weeks Notice Resignation Letter](https://broke2builtai.com/guides/chatgpt-prompt-to-write-a-two-weeks-notice-resignation-letter/): A free copy-paste ChatGPT prompt that writes a clean two weeks notice — plus a sample letter, what to leave out, and how to keep your reference intact.
+- [ChatGPT Prompt to Appeal a Health Insurance Claim Denial](https://broke2builtai.com/guides/chatgpt-prompt-to-appeal-a-health-insurance-claim-denial/): A copy-paste ChatGPT prompt to appeal a health insurance claim denial, plus the real steps: read the denial reason, hit your deadline, attach the proof.
+- [ChatGPT Prompt to Dispute a Credit Report Error](https://broke2builtai.com/guides/chatgpt-prompt-to-dispute-a-credit-report-error/): A copy-paste ChatGPT prompt + free letter template to dispute a credit report error, plus the FCRA rights and exact steps to actually send it.
+- [ChatGPT Prompt to Get Your Security Deposit Back](https://broke2builtai.com/guides/chatgpt-prompt-to-get-security-deposit-back/): A copy-paste ChatGPT prompt + free fill-in-the-blank demand letter template to get your security deposit back from a landlord. No jargon, real steps.
+- [ChatGPT Prompt to Negotiate a Lower Bill](https://broke2builtai.com/guides/chatgpt-prompt-to-negotiate-a-lower-bill/): A free copy-paste ChatGPT prompt that writes your bill-negotiation script — plus the levers, the exact words, and what to say when they say no.
+- [ChatGPT Prompt to Negotiate a Medical Bill](https://broke2builtai.com/guides/chatgpt-prompt-to-negotiate-a-medical-bill/): A copy-paste ChatGPT prompt to negotiate a medical bill, plus the real steps that actually lower it: itemized bills, charity care, and self-pay discounts.
+- [ChatGPT Prompt to Write a Cover Letter That Gets Interviews](https://broke2builtai.com/guides/chatgpt-prompt-to-write-a-cover-letter/): The exact ChatGPT prompt to write a cover letter that sounds human and gets interviews. Copy-paste it, fill in three blanks, and edit so it doesn't read as AI.
+- [ChatGPT Prompt to Write a Professional Email (Copy-Paste)](https://broke2builtai.com/guides/chatgpt-prompt-to-write-a-professional-email/): A real copy-paste ChatGPT prompt to turn a rough thought into a polished professional email, plus variations for asking, declining, apologizing, and bad news.
+- [ChatGPT Prompt: Loan Modification Hardship Letter (Free)](https://broke2builtai.com/guides/chatgpt-prompt-to-write-a-hardship-letter-for-loan-modification/): A free copy-paste ChatGPT prompt for a loan modification hardship letter, plus a fill-in template, a real example, and the 6 things servicers read for.
+- [ChatGPT Prompt: Write a Demand Letter for an Unpaid Invoice](https://broke2builtai.com/guides/chatgpt-prompt-to-write-a-demand-letter-for-an-unpaid-invoice/): A copy-paste ChatGPT prompt that writes a firm, professional demand letter for an unpaid invoice, plus the elements it needs and a filled example.
+- [Follow-Up Email After Interview, No Response: What to Send](https://broke2builtai.com/guides/follow-up-email-after-interview-no-response/): No response after your interview? Here's exactly how long to wait and 2 copy-paste follow-up email templates to send without sounding desperate.
+- [How to Ask for a Job Referral From Someone You Barely Know](https://broke2builtai.com/guides/how-to-ask-for-a-job-referral-from-someone-you-barely-know/): How to ask a near-stranger for a job referral without being awkward — real scripts for LinkedIn, email, and alumni, plus a free copy-paste template.
+- [How to Decline a Job Offer You Already Accepted by Email](https://broke2builtai.com/guides/how-to-decline-a-job-offer-you-already-accepted/): How to back out of a job offer you already accepted, by email, without burning the bridge — when to call vs. email, what to say, and copy-paste templates.
+- [How to Explain a Caregiving Gap on Your Resume (Examples)](https://broke2builtai.com/guides/how-to-explain-a-caregiving-gap-on-your-resume/): How to explain an employment gap from caregiving on your resume — formatting options, transferable skills, copy-paste examples, and a free template.
+- [How to Explain Being Fired in a Job Interview (Examples)](https://broke2builtai.com/guides/how-to-explain-being-fired-in-a-job-interview/): Got fired and dreading the 'why did you leave?' question? Here's the exact 3-part formula, word-for-word example answers, and what never to say.
+- [How to Rewrite an Angry Email Professionally (5 Steps)](https://broke2builtai.com/guides/how-to-rewrite-an-angry-email-before-you-hit-send/): Turn the email you want to send into the one you should: draft the angry version, wait, find the one ask, strip the loaded words, and send something that works.
+- [How to Write a Eulogy for a Daughter (Structure + Example)](https://broke2builtai.com/guides/how-to-write-a-eulogy-for-a-daughter/): How to write a eulogy for a daughter: a 5-part structure, two full worked examples (a grown daughter and a little girl), and a fill-in template.
+- [How to Write a Eulogy for a Son (Structure + Example)](https://broke2builtai.com/guides/how-to-write-a-eulogy-for-a-son/): A gentle structure, two full examples, and a fill-in template for a parent writing a eulogy for a son — a small boy or a grown man.
+- [How to Write a Payment Reminder Email to a Client (3 Stages)](https://broke2builtai.com/guides/how-to-write-a-payment-reminder-email-that-actually-gets-you-paid/): How to write payment reminder emails that get invoices paid: three-stage escalation ladder, templates, and the lines that kill it.
+- [How to Write a Thank-You Email After a Job Interview](https://broke2builtai.com/guides/thank-you-email-after-a-job-interview/): Just finished a sit-down interview? Here's how to write a thank-you email that references what was actually said, fixes a weak answer, and handles a panel.
+- [LinkedIn Headline Examples for Moms Returning to Work](https://broke2builtai.com/guides/linkedin-headline-stay-at-home-mom-returning-to-work/): Real LinkedIn headline examples for stay-at-home moms returning to work, plus a fill-in-the-blank formula and exactly how to handle the gap. No fluff.
+- [Professional Reference List for a Job: Format + Template](https://broke2builtai.com/guides/how-to-format-a-professional-reference-list-for-a-job/): How to format a professional reference list for a job: the layout, what to include for each person, a copy-paste template, and what if you have none.
+- [Reason for Leaving on an Application If You Were Fired](https://broke2builtai.com/guides/reason-for-leaving-on-application-if-you-were-fired/): Fired and stuck on the 'reason for leaving' box on a job application? Here's the safe, honest wording plus what never to write and real examples.
+- [Thank-You Email After a Trial Shift (Templates)](https://broke2builtai.com/guides/thank-you-email-after-working-interview-trial-shift/): What to write in a thank-you email after a working interview or trial shift: timing, real copy-paste templates, and how to handle a shift that went rough.
+- [What to Write in a Message to Employer on Indeed](https://broke2builtai.com/guides/what-to-write-message-to-employer-when-applying-on-indeed/): Exactly what to write in the 'message to employer' box when applying on Indeed: real templates, examples, a fill-in formula, and what to skip.
+- [Why Your Resume Never Gets Past the ATS (Formatting Fix)](https://broke2builtai.com/guides/why-your-resume-never-gets-past-the-ats-plain-formatting-fix/): Why your resume really gets rejected by ATS software — the 75% myth debunked, the parsing failures that actually happen, and a free plain-formatting fix.

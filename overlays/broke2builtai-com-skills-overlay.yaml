@@ -1,0 +1,85 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist overlay — broke2built Agent Skills API
+  version: 1.0.0
+  x-generated: '2026-09-19'
+  x-method: generated
+  x-source: openapi/broke2builtai-com-skills-openapi.json (verbatim from https://api.broke2builtai.com/openapi.json) plus live probes 2026-09-19
+  x-note: >-
+    Enhancements API Evangelist would apply to the provider's spec; the original is never mutated. The largest gap
+    is scope, not detail — the OpenAPI describes 7 operations while the same host serves 29 GET skills documented
+    only in its root catalog and x402 discovery document. This overlay does NOT add those 29 paths (that would be
+    authoring a contract the provider did not publish); it records where they are and adds the observed error
+    envelopes, tags and external docs to the operations that exist.
+extends: broke2builtai-com-skills-openapi.json
+actions:
+- target: $.info
+  update:
+    contact:
+      name: broke2built
+      email: eli@broke2builtai.com
+      url: https://broke2builtai.com/contact/
+    x-api-evangelist:
+      catalog_of_other_skills: https://api.broke2builtai.com/
+      x402_discovery: https://api.broke2builtai.com/.well-known/x402
+      agent_card: https://api.broke2builtai.com/.well-known/agent-card.json
+      mcp_package: https://www.npmjs.com/package/broke2built-skills-mcp
+      note: 29 additional GET skills (verify-email, domain-intel, … vies-check) are served on this host and documented machine-readably in the two URLs above but are not in this OpenAPI.
+- target: $
+  update:
+    externalDocs:
+      description: Root catalog — tiers, prices, payment rail, skill list
+      url: https://api.broke2builtai.com/
+    tags:
+    - {name: video, description: 'Topic → finished narrated vertical video (async job)'}
+    - {name: monitoring, description: '24/7 change-watch with optional webhook notify'}
+    - {name: verification, description: 'Source / EU VAT verification'}
+    - {name: reference-data, description: 'Versioned resolver allowlist (anonymous)'}
+- target: $.paths['/video'].post
+  update: {tags: [video]}
+- target: $.paths['/video/{id}'].get
+  update: {tags: [video]}
+- target: $.paths['/watch'].post
+  update:
+    tags: [monitoring]
+    callbacks:
+      onChange:
+        '{$request.body#/notify}':
+          post:
+            summary: POSTed on change (payload schema not published by the provider)
+            responses:
+              '200': {description: acknowledged}
+- target: $.paths['/watch/{id}'].get
+  update: {tags: [monitoring]}
+- target: $.paths['/source-verify'].get
+  update: {tags: [verification]}
+- target: $.paths['/vies-check'].get
+  update: {tags: [verification]}
+- target: $.paths['/resolver-allowlist'].get
+  update: {tags: [reference-data]}
+- target: $.components
+  update:
+    responses:
+      NotFound:
+        description: 'Observed 2026-09-19 on unknown paths: {"error":"not found","try":"/"}'
+        content:
+          application/json:
+            schema: {type: object, properties: {error: {type: string}, try: {type: string}}}
+      PaymentRequired:
+        description: 'x402 v2 envelope observed 2026-09-19 on an unpaid skill call (GET /verify-email): {"x402Version":2,"resource":{…},"accepts":[{scheme exact, network solana:…, amount, payTo, asset, maxTimeoutSeconds, extra}],"error":"Payment required"}'
+        headers: {}
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                x402Version: {type: integer}
+                resource: {type: object}
+                accepts: {type: array, items: {type: object}}
+                error: {type: string}
+- target: $.paths['/source-verify'].get.responses
+  update:
+    '402': {$ref: '#/components/responses/PaymentRequired'}
+- target: $.paths['/vies-check'].get.responses
+  update:
+    '402': {$ref: '#/components/responses/PaymentRequired'}

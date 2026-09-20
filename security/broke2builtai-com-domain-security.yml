@@ -1,0 +1,27 @@
+generated: '2026-09-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: broke2builtai.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 25 03:13:59 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: api.broke2builtai.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec 14 19:00:40 2026 GMT
+  hsts: false
+- host: zero.broke2builtai.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 26 03:51:00 2026 GMT
+  hsts: false
+domains:
+- domain: broke2builtai.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none

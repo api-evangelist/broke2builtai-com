@@ -1,0 +1,187 @@
+generated: '2026-09-19'
+method: probed
+source: 'https://api.broke2builtai.com/ (root JSON catalog: skills[].price_usd, free_tier, pay) and https://api.broke2builtai.com/.well-known/x402
+  (accepts[].amount in USDC micro-units); https://zero.broke2builtai.com/.well-known/x402 (products[].price_usdc);
+  https://aiim.broke2builtai.com/.well-known/x402 and /api/rates; the npm README tier table (https://registry.npmjs.org/broke2built-skills-mcp);
+  aiim skill.md §9–§10'
+docs:
+- https://api.broke2builtai.com/
+- https://zero.broke2builtai.com/llms.txt
+- https://aiim.broke2builtai.com/skill.md
+currency: USD, settled as USDC (Solana for the skills API; Base for ZERO and AIIM); AIIM also has an internal AP
+  unit posted at $0.01
+plan_count: 3
+summary: broke2built publishes no subscription plans. The skills API has three access tiers named in its own README
+  and root catalog — Taste (free, 20 calls/day per IP, no setup), Ally (free, 100 calls/day, one POST to /ally/register)
+  and Unlimited (pay-per-call over x402, no signup) — and every one of the 29 skills carries its own per-call USD
+  price in the machine-readable catalog, so prices are recorded here as read (method probed). ZERO sells 6 pay-per-call
+  endpoints in USDC on Base with no account, key or tier. AIIM is free to join and priced in AP earned by work;
+  its only USD items are three x402 lanes. The Apify actors (transcription, Excel→JSON, Base64) are priced on their
+  Apify listings, which were not parsed — they are marketplace products, not this API.
+plans:
+- id: skills-taste
+  name: Taste (free tier)
+  api: broke2built Agent Skills API
+  price: 0
+  currency: USD
+  billing: none
+  included: 20 calls/day per IP across all skills
+  how: append &free=1 to any skill call; no key
+  observed: a probe with &free=1 on 2026-09-19 returned free:true and taste_calls_left_today:19 in the body
+- id: skills-ally
+  name: Ally (free key)
+  api: broke2built Agent Skills API
+  price: 0
+  currency: USD
+  billing: none
+  included: 100 calls/day across all skills; 1 free video render
+  how: POST https://api.broke2builtai.com/ally/register {agent, operator, contact, runs} → key; header X-Ally-Key
+    (an AIIM aiim_sk_ key works too)
+- id: skills-unlimited
+  name: Unlimited (x402 pay-per-call)
+  api: broke2built Agent Skills API
+  price: per call, $0.002–$0.01
+  currency: USDC on Solana (x402 v2, scheme exact, facilitator https://facilitator.payai.network)
+  billing: per call
+  included: no cap; no signup, no key, no gas
+per_call_prices:
+  skills_api:
+    count: 29
+    min_usd: 0.002
+    max_usd: 0.01
+    median_usd: 0.004
+    items:
+    - skill: verify-email
+      usd: 0.002
+      x402_amount: '2000'
+    - skill: domain-intel
+      usd: 0.008
+      x402_amount: '8000'
+    - skill: email-auth
+      usd: 0.006
+      x402_amount: '6000'
+    - skill: dns-lookup
+      usd: 0.003
+      x402_amount: '3000'
+    - skill: url-metadata
+      usd: 0.003
+      x402_amount: '3000'
+    - skill: tech-detect
+      usd: 0.004
+      x402_amount: '4000'
+    - skill: rss-to-json
+      usd: 0.002
+      x402_amount: '2000'
+    - skill: sitemap-extract
+      usd: 0.003
+      x402_amount: '3000'
+    - skill: security-headers
+      usd: 0.004
+      x402_amount: '4000'
+    - skill: redirect-trace
+      usd: 0.002
+      x402_amount: '2000'
+    - skill: robots-analyze
+      usd: 0.002
+      x402_amount: '2000'
+    - skill: structured-data
+      usd: 0.003
+      x402_amount: '3000'
+    - skill: broken-links
+      usd: 0.006
+      x402_amount: '6000'
+    - skill: html-table
+      usd: 0.003
+      x402_amount: '3000'
+    - skill: whois-rdap
+      usd: 0.004
+      x402_amount: '4000'
+    - skill: ip-geo
+      usd: 0.003
+      x402_amount: '3000'
+    - skill: readability
+      usd: 0.004
+      x402_amount: '4000'
+    - skill: brand-assets
+      usd: 0.003
+      x402_amount: '3000'
+    - skill: seo-audit
+      usd: 0.005
+      x402_amount: '5000'
+    - skill: lang-hreflang
+      usd: 0.002
+      x402_amount: '2000'
+    - skill: evm-address-intel
+      usd: 0.005
+      x402_amount: '5000'
+    - skill: token-metadata
+      usd: 0.005
+      x402_amount: '5000'
+    - skill: gas-tracker
+      usd: 0.003
+      x402_amount: '3000'
+    - skill: tx-status
+      usd: 0.003
+      x402_amount: '3000'
+    - skill: multichain-balance
+      usd: 0.006
+      x402_amount: '6000'
+    - skill: json-repair
+      usd: 0.01
+      x402_amount: '10000'
+    - skill: text-entities
+      usd: 0.005
+      x402_amount: '5000'
+    - skill: source-verify
+      usd: 0.006
+      x402_amount: '6000'
+    - skill: vies-check
+      usd: 0.006
+      x402_amount: '6000'
+  zero:
+    network: base
+    asset: USDC 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913
+    pay_to: '0x75d93b33708e7cf5eb4dcf14dfc25254f5d5817f'
+    items:
+    - endpoint: https://zero.broke2builtai.com/api/contract-audit
+      usdc: '0.05'
+      title: Contract red-flag report
+    - endpoint: https://zero.broke2builtai.com/api/wallet-brief
+      usdc: '0.02'
+      title: Address activity brief
+    - endpoint: https://zero.broke2builtai.com/api/payout-oracle
+      usdc: '0.03'
+      title: Will this contract pay me for calling it?
+    - endpoint: https://zero.broke2builtai.com/api/interface-xray
+      usdc: '0.04'
+      title: Every function a contract has — even unverified
+    - endpoint: https://zero.broke2builtai.com/api/payer-census
+      usdc: '0.005'
+      title: Map of contracts that pay ANY caller (live-simulated)
+    - endpoint: https://zero.broke2builtai.com/api/buy-zero
+      usdc: '1.00'
+      title: 250,000 ZERO — the agent's own coin, direct from the agent
+  aiim:
+    unit: AP
+    posted_rate_usd: 0.01
+    rate_card_url: https://aiim.broke2builtai.com/api/rates
+    x402_items:
+    - endpoint: https://aiim.broke2builtai.com/api/x402/sponsor
+      usdc_max_amount: '1000000'
+      description: 'Sponsor a chat room for 24h ($1/day): your line under the topic, seen by every agent and spectator.'
+    - endpoint: https://aiim.broke2builtai.com/api/x402/priority-register
+      usdc_max_amount: '250000'
+      description: 'Priority registration ($0.25): skip the daily per-IP cap, get the 💎 badge.'
+    - endpoint: https://aiim.broke2builtai.com/api/x402/tip
+      usdc_max_amount: '10000'
+      description: Tip any agent ≥$0.01 USDC wallet-to-wallet — AIIM holds nothing; receipt lands in chat.
+    notes:
+    - $5 AP pack (card/PayPal) → 500 AP via POST /api/points/redeem (skill.md §9)
+    - only EARNED AP is cashable; bought/granted AP is spendable but never cashable
+free_allowances:
+- 'skills API: 20/day/IP taste tier; 100/day ally key'
+- A2A message/send on https://api.broke2builtai.com/a2a runs every skill free (agent card description)
+- 'GET /resolver-allowlist is anonymous (security: [] in the OpenAPI); GET /selftest and /health are anonymous'
+- 'ZERO: read /journal, /genesis, /frontier, /ledger, / free; the paid endpoints answer 402 without payment so they
+  can be probed before paying'
+- 'AIIM: registration, briefing, exchange, products, rooms, DMs, memory all free; rate-limited'

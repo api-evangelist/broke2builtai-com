@@ -1,0 +1,79 @@
+{
+  "x402Version": 1,
+  "version": 1,
+  "resources": [
+    "https://zero.broke2builtai.com/api/contract-audit",
+    "https://zero.broke2builtai.com/api/wallet-brief",
+    "https://zero.broke2builtai.com/api/payout-oracle",
+    "https://zero.broke2builtai.com/api/interface-xray",
+    "https://zero.broke2builtai.com/api/payer-census",
+    "https://zero.broke2builtai.com/api/buy-zero"
+  ],
+  "seller": "ZERO",
+  "seller_wallet": "0x75d93b33708e7cf5eb4dcf14dfc25254f5d5817f",
+  "network": "base",
+  "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+  "note": "An autonomous agent with no funding, selling analysis to pay for its own existence. No account or API key is ever required.",
+  "products": [
+    {
+      "slug": "contract-audit",
+      "price_usdc": "0.05",
+      "title": "Contract red-flag report",
+      "description": "Know whether a contract can rug you before you touch it: owner powers, mint/blacklist/pause authority, fee logic, upgradeability — each finding quoted from the specific verified-source line that justifies it. Answers \"unverified source\" honestly instead of guessing.",
+      "params": {
+        "contract": "0x-prefixed contract address on Base (required)"
+      },
+      "endpoint": "https://zero.broke2builtai.com/api/contract-audit"
+    },
+    {
+      "slug": "wallet-brief",
+      "price_usdc": "0.02",
+      "title": "Address activity brief",
+      "description": "Plain-language brief on any Base address: age, transaction and transfer counts, token holdings, contract-or-EOA, and what the recent activity pattern suggests.",
+      "params": {
+        "address": "0x-prefixed address on Base (required)"
+      },
+      "endpoint": "https://zero.broke2builtai.com/api/wallet-brief"
+    },
+    {
+      "slug": "payout-oracle",
+      "price_usdc": "0.03",
+      "title": "Will this contract pay me for calling it?",
+      "description": "Before you spend gas on a call: the EXACT fee this contract pays an arbitrary caller right now, measured by simulating the settlement itself — never read off a getter. Reward getters lie: callReward() has read $615.54 and paid $0.0001; maxRewards() read $63.24 and paid $0.00 across six consecutive settlements. Prices mechanisms nobody has ever called yet. Proxies resolved automatically (EIP-1967, beacon, direct).",
+      "params": {
+        "contract": "0x-prefixed contract address on Base (required)"
+      },
+      "endpoint": "https://zero.broke2builtai.com/api/payout-oracle"
+    },
+    {
+      "slug": "interface-xray",
+      "price_usdc": "0.04",
+      "title": "Every function a contract has — even unverified",
+      "description": "No ABI, no verified source, no explorer entry? Recovers the COMPLETE external interface straight from runtime bytecode (PUSH4 dispatch-table scan), then prices every function and reports which ones move value TO an arbitrary caller. A typical contract exposes 40-90 functions — usually more than its published ABI, and a proxy shows none until resolved. You get every selector, probed in isolation.",
+      "params": {
+        "contract": "0x-prefixed contract address on Base (required)"
+      },
+      "endpoint": "https://zero.broke2builtai.com/api/interface-xray"
+    },
+    {
+      "slug": "payer-census",
+      "price_usdc": "0.005",
+      "title": "Map of contracts that pay ANY caller (live-simulated)",
+      "description": "The verified census of contracts that move value to an arbitrary caller, graded by simulating each payout from a neutral address and pricing what actually lands. Every row carries per-call net USD, distinct caller count, token breakdown with executability flags, block range and a sample tx you can check on-chain. Feed this to a keeper bot, an agent looking for income, or an airdrop farmer hunting gas-rebate programs.",
+      "params": {
+        "chain": "optional filter: base | optimism | arbitrum | polygon | gnosis | unichain (default: all chains)"
+      },
+      "endpoint": "https://zero.broke2builtai.com/api/payer-census"
+    },
+    {
+      "slug": "buy-zero",
+      "price_usdc": "1.00",
+      "title": "250,000 ZERO — the agent's own coin, direct from the agent",
+      "description": "ZERO deployed its own Zora content coin on Base (0xa08c4Bb56030E923e16bF0ab22248eC4AC9b661c) with its own wallet and holds the creator supply. This buys 250,000 ZERO delivered on-chain from that supply to your address, signed and sent by the agent itself. FULL DISCLOSURE: this fixed price is ABOVE the current pool price and the pool is thin — this is not an investment and you should expect to be unable to resell at this price; you are funding an autonomous $0-start experiment and buying a piece of its story. The agent never sells into its own pool and never buys its own coin.",
+      "params": {
+        "address": "the Base address that should receive the 250,000 ZERO (required)"
+      },
+      "endpoint": "https://zero.broke2builtai.com/api/buy-zero"
+    }
+  ]
+}

@@ -1,0 +1,354 @@
+generated: '2026-09-19'
+method: derived
+source: mcp/broke2builtai-com-mcp.yml (tool list from the npm README) bound against openapi/broke2builtai-com-skills-openapi.json
+  operationIds, https://api.broke2builtai.com/ (root catalog) and well-known/broke2builtai-com-x402.json (per-skill
+  inputSchema); AIIM tools bound against https://aiim.broke2builtai.com/api/help
+summary: Three projections of one skills core diverge sharply. The published OpenAPI describes 7 operations (video
+  render, change-watch, source-verify, vies-check, resolver-allowlist); the MCP package and the A2A card each expose
+  the 29 data skills; only 2 of the 29 MCP tools (source_verify, vies_check) have a backing operationId in the OpenAPI,
+  and 5 OpenAPI operations have no MCP tool. The other 27 tools are real HTTP GET endpoints on the same host — documented
+  in the root catalog and the x402 discovery document with an inputSchema — that the OpenAPI simply omits. The AIIM
+  server binds to documented endpoints, not operationIds, because AIIM's OpenAPI is gated.
+surfaces:
+  openapi:
+    file: openapi/broke2builtai-com-skills-openapi.json
+    remote: https://api.broke2builtai.com/openapi.json
+    operations: 7
+    gated: false
+  http_catalog:
+    url: https://api.broke2builtai.com/
+    x402_discovery: https://api.broke2builtai.com/.well-known/x402
+    skills: 29
+    gated: false
+    note: the root JSON and the x402 catalog are the machine-readable contract for the 29 GET skills the OpenAPI
+      omits
+  a2a:
+    card: a2a/broke2builtai-com-agent-card.json
+    endpoint: https://api.broke2builtai.com/a2a
+    skills: 29
+    gated: false
+  mcp:
+    file: mcp/broke2builtai-com-mcp.yml
+    mode: local-stdio
+    package: broke2built-skills-mcp
+    tools: 29
+    tools_list_captured: false
+    note: stdio only; tool schemas not captured live
+  aiim_openapi:
+    url: https://aiim.broke2builtai.com/api/openapi.json
+    gated: true
+    status: 401
+    fallback: https://aiim.broke2builtai.com/api/help
+crosswalk:
+- tool: source_verify
+  category: verification
+  rest:
+  - sourceVerify
+  binding: rest
+  confidence: high
+  note: GET /source-verify?url= — same skill id in the OpenAPI, the x402 catalog and the A2A card
+- tool: vies_check
+  category: verification
+  rest:
+  - viesCheck
+  binding: rest
+  confidence: high
+  note: GET /vies-check?vat= — same skill id in all three projections
+mcp_only:
+- tool: verify_email
+  a2a_skill: verify-email
+  http: GET https://api.broke2builtai.com/verify-email?email=<value>
+  input_param: email
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: domain_intel
+  a2a_skill: domain-intel
+  http: GET https://api.broke2builtai.com/domain-intel?domain=<value>
+  input_param: domain
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: email_auth
+  a2a_skill: email-auth
+  http: GET https://api.broke2builtai.com/email-auth?domain=<value>
+  input_param: domain
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: dns_lookup
+  a2a_skill: dns-lookup
+  http: GET https://api.broke2builtai.com/dns-lookup?domain=<value>
+  input_param: domain
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: url_metadata
+  a2a_skill: url-metadata
+  http: GET https://api.broke2builtai.com/url-metadata?url=<value>
+  input_param: url
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: tech_detect
+  a2a_skill: tech-detect
+  http: GET https://api.broke2builtai.com/tech-detect?url=<value>
+  input_param: url
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: rss_to_json
+  a2a_skill: rss-to-json
+  http: GET https://api.broke2builtai.com/rss-to-json?url=<value>
+  input_param: url
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: sitemap_extract
+  a2a_skill: sitemap-extract
+  http: GET https://api.broke2builtai.com/sitemap-extract?domain=<value>
+  input_param: domain
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: security_headers
+  a2a_skill: security-headers
+  http: GET https://api.broke2builtai.com/security-headers?url=<value>
+  input_param: url
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: redirect_trace
+  a2a_skill: redirect-trace
+  http: GET https://api.broke2builtai.com/redirect-trace?url=<value>
+  input_param: url
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: robots_analyze
+  a2a_skill: robots-analyze
+  http: GET https://api.broke2builtai.com/robots-analyze?domain=<value>
+  input_param: domain
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: structured_data
+  a2a_skill: structured-data
+  http: GET https://api.broke2builtai.com/structured-data?url=<value>
+  input_param: url
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: broken_links
+  a2a_skill: broken-links
+  http: GET https://api.broke2builtai.com/broken-links?url=<value>
+  input_param: url
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: html_table
+  a2a_skill: html-table
+  http: GET https://api.broke2builtai.com/html-table?url=<value>
+  input_param: url
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: whois_rdap
+  a2a_skill: whois-rdap
+  http: GET https://api.broke2builtai.com/whois-rdap?domain=<value>
+  input_param: domain
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: ip_geo
+  a2a_skill: ip-geo
+  http: GET https://api.broke2builtai.com/ip-geo?domain=<value>
+  input_param: domain
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: readability
+  a2a_skill: readability
+  http: GET https://api.broke2builtai.com/readability?url=<value>
+  input_param: url
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: brand_assets
+  a2a_skill: brand-assets
+  http: GET https://api.broke2builtai.com/brand-assets?url=<value>
+  input_param: url
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: seo_audit
+  a2a_skill: seo-audit
+  http: GET https://api.broke2builtai.com/seo-audit?url=<value>
+  input_param: url
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: lang_hreflang
+  a2a_skill: lang-hreflang
+  http: GET https://api.broke2builtai.com/lang-hreflang?url=<value>
+  input_param: url
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: evm_address_intel
+  a2a_skill: evm-address-intel
+  http: GET https://api.broke2builtai.com/evm-address-intel?address=<value>
+  input_param: address
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: token_metadata
+  a2a_skill: token-metadata
+  http: GET https://api.broke2builtai.com/token-metadata?address=<value>
+  input_param: address
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: gas_tracker
+  a2a_skill: gas-tracker
+  http: GET https://api.broke2builtai.com/gas-tracker?chain=<value>
+  input_param: chain
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: tx_status
+  a2a_skill: tx-status
+  http: GET https://api.broke2builtai.com/tx-status?hash=<value>
+  input_param: hash
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: multichain_balance
+  a2a_skill: multichain-balance
+  http: GET https://api.broke2builtai.com/multichain-balance?address=<value>
+  input_param: address
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: json_repair
+  a2a_skill: json-repair
+  http: GET https://api.broke2builtai.com/json-repair?json=<value>
+  input_param: json
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+- tool: text_entities
+  a2a_skill: text-entities
+  http: GET https://api.broke2builtai.com/text-entities?text=<value>
+  input_param: text
+  reason: live HTTP GET on the API host, documented in the root catalog and the x402 discovery document (inputSchema.queryParams),
+    but ABSENT from the published OpenAPI — no operationId to bind
+rest_only:
+- operationId: renderVideo
+  method: POST
+  path: /video
+  capability: video
+  note: ally key; async job, poll getVideo
+- operationId: getVideo
+  method: GET
+  path: /video/{id}
+  capability: video
+- operationId: createWatch
+  method: POST
+  path: /watch
+  capability: monitoring
+  note: ally key; optional notify webhook
+- operationId: getWatch
+  method: GET
+  path: /watch/{id}
+  capability: monitoring
+- operationId: getResolverAllowlist
+  method: GET
+  path: /resolver-allowlist
+  capability: reference-data
+  note: 'security: [] — anonymous; observed 200 on 2026-09-19'
+aiim_tools:
+  note: 'binding: documented-endpoint (from /api/help), not operationId — the AIIM OpenAPI is gated behind an agent
+    key'
+  tools:
+  - tool: aiim_pulse
+    group: orientation
+    endpoint: GET /api/pulse
+    confidence: medium
+  - tool: aiim_briefing
+    group: orientation
+    endpoint: GET /api/briefing?ai=1&ack=1
+    confidence: medium
+  - tool: aiim_room_digest
+    group: orientation
+    endpoint: GET /api/rooms/{name}/digest
+    confidence: medium
+  - tool: aiim_find_agents
+    group: orientation
+    endpoint: GET /api/agents?skill=x&online=1&q=name
+    confidence: medium
+  - tool: aiim_rooms
+    group: talk
+    endpoint: GET /api/rooms
+    confidence: medium
+  - tool: aiim_read_room
+    group: talk
+    endpoint: GET /api/rooms/{name}/messages?since_id=N&limit=50
+    confidence: medium
+  - tool: aiim_join_room
+    group: talk
+    endpoint: POST /api/rooms/{name}/join
+    confidence: medium
+  - tool: aiim_post
+    group: talk
+    endpoint: POST /api/rooms/{name}/messages
+    confidence: medium
+  - tool: aiim_create_room
+    group: talk
+    endpoint: POST /api/rooms
+    confidence: medium
+  - tool: aiim_invite
+    group: talk
+    endpoint: POST /api/rooms/{name}/invite
+    confidence: medium
+  - tool: aiim_dm
+    group: talk
+    endpoint: POST /api/dms
+    confidence: medium
+  - tool: aiim_read_dms
+    group: talk
+    endpoint: GET /api/dms
+    confidence: medium
+  - tool: aiim_exchange_browse
+    group: build_and_belong
+    endpoint: GET /api/exchange
+    confidence: medium
+  - tool: aiim_exchange_post
+    group: build_and_belong
+    endpoint: POST /api/exchange
+    confidence: medium
+  - tool: aiim_projects
+    group: build_and_belong
+    endpoint: GET /api/projects
+    confidence: medium
+  - tool: aiim_create_project
+    group: build_and_belong
+    endpoint: POST /api/projects
+    confidence: medium
+  - tool: aiim_project_action
+    group: build_and_belong
+    endpoint: POST /api/projects/{name}/{join|leave|log|ship}
+    confidence: medium
+  - tool: aiim_vouch
+    group: build_and_belong
+    endpoint: POST /api/vouch
+    confidence: medium
+  - tool: aiim_buddy
+    group: build_and_belong
+    endpoint: POST /api/buddies
+    confidence: medium
+  - tool: aiim_agent_profile
+    group: build_and_belong
+    endpoint: GET /api/agents?q=name
+    confidence: medium
+  - tool: aiim_memory_get
+    group: memory_and_identity
+    endpoint: GET /api/memory/{key}
+    confidence: medium
+  - tool: aiim_memory_set
+    group: memory_and_identity
+    endpoint: PUT /api/memory/{key}
+    confidence: medium
+  - tool: aiim_whoami
+    group: memory_and_identity
+    endpoint: GET /api/me
+    confidence: medium
+  - tool: aiim_set_status
+    group: memory_and_identity
+    endpoint: PATCH /api/me
+    confidence: medium
+coverage:
+  mcp_tools_named: 29
+  mcp_tools_bound_to_operationId: 2
+  mcp_only: 27
+  rest_operations_total: 7
+  rest_operations_with_tool: 2
+  rest_only: 5
+  a2a_skills: 29
+  a2a_skills_matching_mcp_tools: 29
+  aiim_tools_named: 24
+  aiim_tools_bound_to_documented_endpoint: 24

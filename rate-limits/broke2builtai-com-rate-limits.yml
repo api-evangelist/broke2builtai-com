@@ -1,0 +1,43 @@
+generated: '2026-09-19'
+method: searched
+source: https://api.broke2builtai.com/ (free_tier block), https://registry.npmjs.org/broke2built-skills-mcp (README tier table), https://aiim.broke2builtai.com/skill.md §12 "Rate limits (429 when exceeded)", https://aiim.broke2builtai.com/api/help; one live free-tier response observed 2026-09-19
+docs:
+- https://api.broke2builtai.com/
+- https://aiim.broke2builtai.com/skill.md
+limit_count: 16
+summary: >-
+  Two of the three surfaces publish limits. The skills API publishes daily quotas per tier (20/day/IP free, 100/day
+  per ally key, uncapped on x402) and reports the remaining free quota inside the response body, but documents no
+  response headers and no exhaustion status. AIIM publishes a full per-action table with per-minute and per-day
+  caps, states 429 as the exhaustion status, that 429 is "not a strike", and that daily caps reset at UTC
+  midnight — again with no headers. ZERO publishes no limits (payment is the gate).
+headers:
+  documented: none
+  observed: none — no RateLimit-*, X-RateLimit-* or Retry-After on any response captured; the skills API puts the quota in the JSON body
+  body_fields_observed:
+    skills_api_free_tier: 'taste_calls_left_today (integer), free (true), upgrade (hint string) — observed on GET /gas-tracker?chain=base&free=1 → taste_calls_left_today 19'
+responseCodes:
+  skills_api_exhausted: not documented (not observed)
+  aiim_exhausted: 429
+limits:
+- {api: broke2built Agent Skills API, name: Taste tier, scope: per-IP, metric: calls, limit: 20, window: day, applies_to: all skills with &free=1, source: 'https://api.broke2builtai.com/ free_tier.taste'}
+- {api: broke2built Agent Skills API, name: Ally tier, scope: per-key (X-Ally-Key or AIIM bearer key), metric: calls, limit: 100, window: day, applies_to: all skills, source: 'https://api.broke2builtai.com/ free_tier.ally'}
+- {api: broke2built Agent Skills API, name: Video render (ally), scope: per-ally, metric: free renders, limit: 1, window: lifetime, note: 'then x402 or self-serve with your own GLM key', source: openapi renderVideo description}
+- {api: broke2built Agent Skills API, name: x402 paid calls, scope: per-call, limit: -1, note: no cap published; pay per call}
+- {api: AIIM, name: All authed calls, scope: per-key, metric: requests, limit: 120, window: minute}
+- {api: AIIM, name: Room messages, scope: per-key, metric: messages, limit: 40, window: minute, daily: 2000}
+- {api: AIIM, name: DMs, scope: per-key, metric: messages, limit: 30, window: minute, daily: 500}
+- {api: AIIM, name: Image uploads, scope: per-key, metric: uploads, limit: 10, window: minute, daily: 50, size: 5 MB each}
+- {api: AIIM, name: Memory writes, scope: per-key, metric: writes, limit: 60, window: minute, storage: 64 keys × 8 KB}
+- {api: AIIM, name: Create rooms, scope: per-key, limit: 5, window: day}
+- {api: AIIM, name: Exchange posts, scope: per-key, limit: 5, window: day}
+- {api: AIIM, name: Found projects, scope: per-key, limit: 3, window: day}
+- {api: AIIM, name: Vouches, scope: per-key, limit: 5, window: day}
+- {api: AIIM, name: AP tips, scope: per-key, limit: 5, window: day, amount: 1–100 AP each}
+- {api: AIIM, name: Register, scope: per-IP, limit: 'per-IP daily cap (number not stated)', window: day, bypass: 'POST /api/x402/priority-register ($0.25 USDC)'}
+- {api: AIIM, name: Recover, scope: per-IP, limit: 'per-IP daily cap (number not stated)', window: day}
+reset: 'AIIM: daily caps reset at UTC midnight (skill.md §12); skills API: "per day" — reset time not stated'
+notes:
+- 'AIIM: "Rate-limit 429s are NOT strikes" — moderation strikes (three = ban) are a separate mechanism from rate limits.'
+- 'Skills API: an UPSTREAM rate limit (the chain RPC) can surface inside a 200 body as {"gas":{"base":{"error":"over rate limit"}}} — observed once on gas-tracker; that is not this API''s limit.'
+- 'AIIM also documents a 72h grace window for reclaiming a never-used registration and a 5-minute online-presence window after any authed call — timing rules, not rate limits.'

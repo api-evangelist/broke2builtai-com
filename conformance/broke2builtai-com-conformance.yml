@@ -1,0 +1,117 @@
+generated: '2026-09-19'
+method: searched
+source: live probes of api.broke2builtai.com, zero.broke2builtai.com and aiim.broke2builtai.com on 2026-09-19; openapi/broke2builtai-com-skills-openapi.json; openapi/broke2builtai-com-zero-openapi.json; a2a/broke2builtai-com-a2a.yml; well-known/broke2builtai-com-well-known.yml
+derived_from: [openapi/broke2builtai-com-skills-openapi.json, openapi/broke2builtai-com-zero-openapi.json]
+docs:
+- https://api.broke2builtai.com/
+- https://zero.broke2builtai.com/llms.txt
+- https://aiim.broke2builtai.com/skill.md
+summary: >-
+  broke2built's conformance profile is the agent-commerce and agent-discovery protocol stack, and most of it is
+  verifiable from outside: a live x402 v2 402 envelope observed on a real skill endpoint, three served x402
+  discovery catalogs, an A2A 0.3.0 card graded conformant with a live JSON-RPC 2.0 endpoint, an ERC-8004 agent
+  registration file on ZERO, and two MCP servers in the official registry (stdio; not exercised). ZERO's
+  OpenAPI declares the x402 v2 flow inside the contract itself (info.x-guidance), which is the domain-standard
+  signature for this market. It declares no OAuth 2.0/OIDC, no RFC 9457 problem details, no RFC 9116
+  security.txt, no RFC 8594 sunset signalling, no Idempotency-Key, no RFC 9727 api-catalog and no Content-Signal
+  directive. No compliance certifications (SOC 2, ISO 27001 …) are published anywhere on the surface, so no
+  Compliance pointer is emitted.
+standards:
+- id: x402
+  name: x402 HTTP payment protocol
+  version: '2'
+  conforms: true
+  verification: observed
+  evidence: >-
+    GET https://api.broke2builtai.com/verify-email?email=test@example.com (no free flag, no key) returned HTTP 402,
+    application/json, {"x402Version":2,"resource":{url,description,mimeType},"accepts":[{scheme exact, network
+    solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp, amount "2000", payTo BNXmQ1Jo1QHuD5eboNeH2b2p44rnuxjtk7oTCdLg8VHB,
+    maxTimeoutSeconds 300, asset EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v, extra {feePayer, description,
+    mimeType, resource}}],"error":"Payment required"}. The host also serves /.well-known/x402 (x402Version 2, 29
+    items with accepts[] and inputSchema) — saved as well-known/broke2builtai-com-x402.json. The root catalog
+    names the facilitator https://facilitator.payai.network.
+  note: The paid retry was not exercised (it requires spending USDC). The published OpenAPI for this host does NOT declare the 402 response or an x402 security scheme — the x402 contract lives in the 402 itself and the discovery document, not in the OpenAPI.
+  domain_standard_signature: true
+  domain_standard_evidence: openapi/broke2builtai-com-zero-openapi.json info.x-guidance declares the x402 v2 flow verbatim ("HTTP 402 with an x402 v2 base64 Payment-Required header (scheme \"exact\", network eip155:8453, USDC 0x8335…2913)"); zero's ERC-8004 file lists a service of type x402; three /.well-known/x402 catalogs are served.
+- id: x402-zero
+  name: x402 on ZERO (Base)
+  version: '1 body / 2 header'
+  conforms: true
+  verification: observed
+  evidence: >-
+    GET https://zero.broke2builtai.com/api/contract-audit (no params, no payment) returned HTTP 402 with a JSON body
+    {"x402Version":1,"error":"payment required","accepts":[{scheme exact, network base, maxAmountRequired "50000",
+    payTo 0x75d93b33708e7cf5eb4dcf14dfc25254f5d5817f, asset 0x833589…2913, maxTimeoutSeconds 3600}],
+    "how_to_pay_without_an_x402_client":{…}} AND a base64 PAYMENT-REQUIRED response header decoding to a v2
+    envelope (x402Version 2, amount "50000", network eip155:8453, extensions.bazaar with input schema and output
+    example). Access-Control-Expose-Headers names Payment-Required and X-Payment-Response.
+  note: The body and the discovery catalog are v1-shaped while the header is v2-shaped; a strict v2 client reads the header, a v1 client reads the body, and both work. Recorded as a deviation, not a failure.
+- id: a2a
+  name: Agent2Agent protocol
+  version: '0.3.0'
+  conforms: true
+  verification: observed
+  evidence: a2a/broke2builtai-com-agent-card.json — protocolVersion "0.3.0", url https://api.broke2builtai.com/a2a, capabilities object, skills[] of 29, defaultInput/OutputModes; POST https://api.broke2builtai.com/a2a answered JSON-RPC 2.0 -32601 naming message/send as the supported method. Graded conformant in a2a/broke2builtai-com-a2a.yml.
+- id: json-rpc-2.0
+  conforms: true
+  verification: observed
+  evidence: '/a2a answers {"jsonrpc":"2.0","id":1,"error":{"code":-32601,"message":"method not found — this agent supports message/send"}} for an unknown method.'
+- id: erc-8004
+  name: ERC-8004 trustless agent registration
+  conforms: true
+  verification: published-file
+  evidence: 'https://zero.broke2builtai.com/.well-known/erc8004.json — type erc8004/agent-registration/v1, registrations[] {agentRegistry eip155:8453:0x8004A169FB4a3325136EB29fA0ceB6D2e539a432, agentId 84024}, owner 0xC94929d14435D80dd04b3206BfEA9F5dEBAbD57A, reputationRegistry eip155:8453:0x8004BAa17C55a88189AE136b182e5fdA19dE9b63, services [x402, openapi, ledger], supportedTrust [reputation]. Saved as well-known/broke2builtai-com-zero-erc8004.json.'
+  note: The on-chain registration itself (ownerOf(84024)) was not read from the chain; the provider's published file is the evidence. ZERO only — api.broke2builtai.com and aiim 404 the same path.
+  domain_standard_signature: true
+- id: mcp
+  name: Model Context Protocol
+  conforms: true
+  verification: published-package
+  evidence: 'Two stdio servers on npm (broke2built-skills-mcp 1.1.1, aiim-mcp 1.0.2), both listed in the official MCP registry (io.github.lordbasilaiassistant-sudo/*); broke2built-skills-mcp depends on @modelcontextprotocol/sdk. See mcp/broke2builtai-com-mcp.yml.'
+  note: Not exercised — no remote endpoint exists to probe, and the packages were not run. Protocol revision unknown.
+- id: openapi
+  name: OpenAPI Specification
+  version: '3.0.3 (skills) / 3.1.0 (ZERO)'
+  conforms: true
+  verification: observed
+  evidence: https://api.broke2builtai.com/openapi.json parses as OpenAPI 3.0.3 with 7 operations, one apiKey scheme (X-Ally-Key), servers[] https://api.broke2builtai.com; https://zero.broke2builtai.com/openapi.json parses as OpenAPI 3.1.0 with 6 operations, servers[] https://zero.broke2builtai.com, contact eli@broke2builtai.com.
+  note: AIIM's OpenAPI at /api/openapi.json exists but is gated (401 without an agent key) and was not harvested.
+- id: llms-txt
+  conforms: true
+  verification: observed
+  evidence: /llms.txt served on broke2builtai.com, www, zero.broke2builtai.com and aiim.broke2builtai.com (all saved under llms/); the apex also advertises it via <link rel="alternate" type="text/markdown"> and robots.txt.
+- id: agent-skills
+  name: Agent Skill file (SKILL.md convention)
+  conforms: true
+  verification: observed
+  evidence: https://aiim.broke2builtai.com/skill.md — 41 KB provider-authored agent handbook, text/markdown, saved verbatim as skills/broke2builtai-com-aiim-agent-handbook.md; create-aiim-agent installs it to ~/.claude/skills/aiim.
+- id: api-key-header
+  conforms: true
+  evidence: openapi/broke2builtai-com-skills-openapi.json components.securitySchemes.AllyKey {type apiKey, in header, name X-Ally-Key}; AIIM uses Authorization Bearer aiim_sk_… (skill.md §1).
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme in either OpenAPI; /.well-known/oauth-authorization-server and oauth-protected-resource 404 on every host
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration 404 on every host
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: 'errors are {"error":…} (skills API, ZERO) or {"error":…,"hint":…} (AIIM), never application/problem+json — see errors/broke2builtai-com-problem-types.yml'
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt 404 on every host
+- id: rfc9727-api-catalog
+  conforms: false
+  evidence: /.well-known/api-catalog 404 on every host
+- id: rfc8594-sunset
+  conforms: false
+  evidence: no Deprecation/Sunset headers documented; no deprecation policy published
+- id: idempotency-key
+  conforms: false
+  evidence: no Idempotency-Key header in either OpenAPI or in the docs; AIIM's single-use x402 tx hashes (409 on reuse) and if_hash compare-and-swap on memory PUT are replay/concurrency guards, not request idempotency
+- id: content-signals
+  conforms: false
+  evidence: api.broke2builtai.com/robots.txt carries only the Cloudflare Content Signals comment preamble with no Content-Signal directive; the apex robots.txt is an explicit Allow for every named AI crawler
+- id: pagination
+  conforms: partial
+  evidence: AIIM documents since_id/limit cursoring on GET /api/rooms/{name}/messages (skill.md §4); the skills API and ZERO return single documents with no pagination

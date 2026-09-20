@@ -1,0 +1,78 @@
+generated: '2026-09-19'
+method: searched
+source: https://registry.npmjs.org/broke2built-skills-mcp, https://registry.npmjs.org/aiim-mcp, https://registry.npmjs.org/create-aiim-agent (metadata read 2026-09-19); npm search "broke2built"; PyPI /pypi/broke2built/json (404); official MCP registry listings
+summary: >-
+  Three first-party npm packages, all published by the founder's npm account (anthonysnider — Anthony Snider is
+  named as founder in the site's Organization JSON-LD and on /about/), all MIT, all zero- or single-dependency
+  Node CLIs/servers. Two are MCP servers (stdio) and one is a scaffolder CLI. No packages on PyPI, RubyGems,
+  crates.io, Maven, NuGet or Go. Every package declares a repository under github.com/lordbasilaiassistant-sudo,
+  and that GitHub account returned 404 on 2026-09-19 (profile, AIIM, broke2built-skills-mcp, Abundance, raw
+  README, github.io) — so the declared source links are dead and the npm tarball is the only inspectable source.
+  Currency note: all three were last published in July 2026 (versions 1.1.1 / 1.0.2 / 1.0.0), while the API they
+  wrap reports built 2026-09-04 and the agent card was regenerated 2026-09-02; the skill set (29) has not changed
+  since the package release, so the two-month gap is not evidence of drift.
+packages:
+- language: javascript
+  runtime: node >= 18
+  registry: npm
+  name: broke2built-skills-mcp
+  kind: mcp-server (stdio)
+  url: https://www.npmjs.com/package/broke2built-skills-mcp
+  install: npx -y broke2built-skills-mcp
+  version: 1.1.1
+  published: '2026-07-18'
+  first_published: '2026-07-18'
+  license: MIT
+  official: true
+  official_basis: npm maintainer anthonysnider; homepage https://api.broke2builtai.com/; listed in the official MCP registry as io.github.lordbasilaiassistant-sudo/broke2built-skills-mcp
+  repository: https://github.com/lordbasilaiassistant-sudo/broke2built-skills-mcp
+  repository_status: 404 on 2026-09-19
+  dependencies: ['@modelcontextprotocol/sdk']
+  wraps: https://api.broke2builtai.com (29 data skills)
+- language: javascript
+  runtime: node >= 18
+  registry: npm
+  name: aiim-mcp
+  kind: mcp-server (stdio)
+  url: https://www.npmjs.com/package/aiim-mcp
+  install: npx -y aiim-mcp
+  version: 1.0.2
+  published: '2026-07-19'
+  first_published: '2026-07-19'
+  license: MIT
+  official: true
+  official_basis: npm maintainer anthonysnider; homepage https://aiim.broke2builtai.com; listed in the official MCP registry as io.github.lordbasilaiassistant-sudo/aiim-mcp
+  repository: https://github.com/lordbasilaiassistant-sudo/AIIM (packages/aiim-mcp)
+  repository_status: 404 on 2026-09-19
+  dependencies: []
+  wraps: https://aiim.broke2builtai.com/api (24 tools)
+- language: javascript
+  runtime: node >= 18
+  registry: npm
+  name: create-aiim-agent
+  kind: cli (scaffolder)
+  url: https://www.npmjs.com/package/create-aiim-agent
+  install: npx create-aiim-agent
+  version: 1.0.0
+  published: '2026-07-19'
+  first_published: '2026-07-19'
+  license: MIT
+  official: true
+  official_basis: npm maintainer anthonysnider; homepage https://aiim.broke2builtai.com
+  repository: https://github.com/lordbasilaiassistant-sudo/AIIM (packages/create-aiim-agent)
+  repository_status: 404 on 2026-09-19
+  dependencies: []
+  does: installs the AIIM skill into ~/.claude/skills/aiim, registers the agent (POST /api/register) and saves api_key + recovery_code to ~/.claude/secrets/aiim.env
+  see: cli/broke2builtai-com-cli.yml
+registries_checked:
+- {registry: npm, query: broke2built, result: 1 hit (broke2built-skills-mcp); aiim-mcp and create-aiim-agent located from the AIIM llms.txt/skill.md}
+- {registry: pypi, package: broke2built, status: 404}
+- {registry: mcp-registry, query: broke2built / aiim, result: 2 listings under io.github.lordbasilaiassistant-sudo/}
+not_packages:
+  hosted_actors:
+    note: Apify actors are hosted marketplace products run on Apify's platform, not client libraries; listed for completeness, not counted as packages or SDKs.
+    items:
+    - {name: Audio & Video to Text, url: 'https://apify.com/eliai/audio-transcriber-whisper'}
+    - {name: Excel to JSON, url: 'https://apify.com/eliai/excel-to-json', status: 200 on 2026-09-19}
+    - {name: Base64 Encoder / Decoder, url: 'https://apify.com/eliai/base64-encoder-decoder'}
+    - {name: Apify profile, url: 'https://apify.com/eliai', status: 200 on 2026-09-19}

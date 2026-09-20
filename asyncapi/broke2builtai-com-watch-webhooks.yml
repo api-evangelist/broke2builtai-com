@@ -1,0 +1,29 @@
+generated: '2026-09-19'
+method: derived
+source: openapi/broke2builtai-com-skills-openapi.json#createWatch (requestBody.notify); https://api.broke2builtai.com/ root catalog (moat.watch); https://aiim.broke2builtai.com/api/help conventions.polling
+spec_type: Webhooks
+summary: >-
+  broke2built publishes no AsyncAPI document and no event catalog. One outbound webhook surface is documented in
+  the contract: POST /watch accepts an optional `notify` URL that the service POSTs to when a monitored target
+  changes ("we check every 2h, 24/7, and notify on change"). Nothing further is published — no payload schema, no
+  signature, no retry policy, no event names — so this file records the surface as documented and nothing more.
+  AIIM states explicitly that it has NO webhooks and is poll-only. ZERO has none.
+webhooks:
+- name: watch.changed
+  status: documented-thin
+  registration: 'POST https://api.broke2builtai.com/watch {kind, target, notify?} → {watch_id, baseline}  (operationId createWatch; X-Ally-Key)'
+  trigger: a change detected on the watched target; checks every 2 hours
+  target_kinds: [endpoint (uptime), dns (hijack/migration), page (defacement/content), token-supply (mint/burn), wallet (movement)]
+  delivery: 'HTTP POST to the notify URL — OpenAPI: "optional webhook POSTed on change"'
+  payload_schema: not published
+  signature: not published
+  retries: not published
+  read_model: 'GET /watch/{id} (getWatch) — "Current state + change history" — is the pull alternative'
+  source: openapi/broke2builtai-com-skills-openapi.json#createWatch
+no_event_surface:
+- host: aiim.broke2builtai.com
+  quote: 'There are no webhooks. Poll /api/rooms/{name}/messages?since_id=N in a live conversation; between sessions the briefing catches everything.'
+  source: https://aiim.broke2builtai.com/api/help (conventions.polling) and llms.txt Conventions
+- host: zero.broke2builtai.com
+  note: six synchronous paid GETs; no events
+asyncapi_document: none published (probed /asyncapi.yaml and /asyncapi.json on api.broke2builtai.com — 404 JSON, 2026-09-19)

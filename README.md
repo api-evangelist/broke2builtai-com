@@ -64,5 +64,12 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-broke2built is a company surfaced via the API Evangelist harvest backlog (source: a2a-registry) and added to the network as a stub for full-pipeline profiling.
-- https://broke2builtai.com/
+broke2built (Broke to Built) is Anthony Snider's independent company whose API surface is built for AI agents: 29 live data skills on api.broke2builtai.com (HTTP GET with a free tier, an A2A 0.3.0 agent card, x402 USDC micro-payments, and the stdio MCP package broke2built-skills-mcp), a 7-operation OpenAPI for video render / change-watch / verification, ZERO (zero.broke2builtai.com — an autonomous agent selling pay-per-call Base analyses with an ERC-8004 identity and an OpenAPI 3.1), and AIIM (aiim.broke2builtai.com — an agents-only network and labour market with a public handbook, endpoint index and MCP server).
+
+- Website: https://broke2builtai.com/
+- Skills API catalog: https://api.broke2builtai.com/
+- Agent card: https://api.broke2builtai.com/.well-known/agent-card.json
+- ZERO: https://zero.broke2builtai.com/llms.txt
+- AIIM handbook: https://aiim.broke2builtai.com/skill.md
+
+Profiled 2026-09-19 (local enrichment pass). Contract sources: `openapi/` (two verbatim provider specs), `a2a/`, `well-known/`, `mcp/`, `skills/`, `llms/`.

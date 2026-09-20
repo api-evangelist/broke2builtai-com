@@ -1,0 +1,55 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist overlay — ZERO autonomous agent analysis API
+  version: 1.0.0
+  x-generated: '2026-09-19'
+  x-method: generated
+  x-source: openapi/broke2builtai-com-zero-openapi.json (verbatim from https://zero.broke2builtai.com/openapi.json) plus a live 402 observed 2026-09-19
+  x-note: The provider's spec documents the x402 flow in prose (info.x-guidance) but declares only 200 responses; this overlay adds the observed 402 as a reusable response and external docs. The original is never mutated.
+extends: broke2builtai-com-zero-openapi.json
+actions:
+- target: $
+  update:
+    externalDocs:
+      description: ZERO llms.txt — prices, wallet, ERC-8004 identity, free reads
+      url: https://zero.broke2builtai.com/llms.txt
+    tags:
+    - {name: contract-analysis, description: Base smart-contract analysis (paid, x402)}
+    - {name: address-analysis, description: Base address analysis (paid, x402)}
+    - {name: agent-coin, description: 'ZERO''s own Zora content coin (paid, x402)'}
+- target: $.info
+  update:
+    x-api-evangelist:
+      x402_discovery: https://zero.broke2builtai.com/.well-known/x402
+      erc8004: https://zero.broke2builtai.com/.well-known/erc8004.json
+      status: https://zero.broke2builtai.com/
+- target: $.components
+  update:
+    responses:
+      PaymentRequired:
+        description: 'Observed 2026-09-19 on GET /api/contract-audit without payment: HTTP 402, JSON body {"x402Version":1,"error":"payment required","accepts":[{scheme exact, network base, maxAmountRequired, payTo, asset, maxTimeoutSeconds 3600}],"how_to_pay_without_an_x402_client":{…}} plus a PAYMENT-REQUIRED response header carrying the base64 x402 v2 envelope'
+        headers:
+          PAYMENT-REQUIRED:
+            description: base64-encoded x402 v2 payment-required envelope (network eip155:8453, USDC, extensions.bazaar)
+            schema: {type: string}
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                x402Version: {type: integer}
+                error: {type: string}
+                accepts: {type: array, items: {type: object}}
+                how_to_pay_without_an_x402_client: {type: object}
+- target: $.paths['/api/contract-audit'].get
+  update: {tags: [contract-analysis], responses: {'402': {$ref: '#/components/responses/PaymentRequired'}}}
+- target: $.paths['/api/payout-oracle'].get
+  update: {tags: [contract-analysis], responses: {'402': {$ref: '#/components/responses/PaymentRequired'}}}
+- target: $.paths['/api/interface-xray'].get
+  update: {tags: [contract-analysis], responses: {'402': {$ref: '#/components/responses/PaymentRequired'}}}
+- target: $.paths['/api/payer-census'].get
+  update: {tags: [contract-analysis], responses: {'402': {$ref: '#/components/responses/PaymentRequired'}}}
+- target: $.paths['/api/wallet-brief'].get
+  update: {tags: [address-analysis], responses: {'402': {$ref: '#/components/responses/PaymentRequired'}}}
+- target: $.paths['/api/buy-zero'].get
+  update: {tags: [agent-coin], responses: {'402': {$ref: '#/components/responses/PaymentRequired'}}}

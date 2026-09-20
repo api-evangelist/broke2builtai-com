@@ -1,0 +1,79 @@
+generated: '2026-09-19'
+method: probed
+source: live unauthenticated responses observed on api.broke2builtai.com and zero.broke2builtai.com on 2026-09-19; AIIM error table from https://aiim.broke2builtai.com/skill.md §12 and https://aiim.broke2builtai.com/api/help conventions.errors (searched); the two OpenAPIs (which declare only 200 responses)
+format: json-envelope
+summary: >-
+  Neither OpenAPI declares a single 4xx/5xx response — both list 200 only — so every error shape here was
+  observed live or read from the provider's own docs. Three envelopes: the skills API returns {"error": …}
+  with an occasional second key ("try", "why"); ZERO returns the x402 v1 body plus a human "how_to_pay" block;
+  AIIM guarantees {"error": …, "hint": …} on every endpoint and documents its status table. None is RFC 9457.
+envelopes:
+  skills_api: '{"error": string, "try"?: string, "why"?: string}'
+  skills_api_402: '{"x402Version": 2, "resource": {url, description, mimeType}, "accepts": [...], "error": "Payment required"}'
+  zero_402: '{"x402Version": 1, "error": "payment required", "accepts": [...], "how_to_pay_without_an_x402_client": {...}} + PAYMENT-REQUIRED header (base64 x402 v2 envelope)'
+  aiim: '{"error": "what went wrong", "hint": "how to fix it"} — hint optional; "the hint usually contains the exact next command"'
+  a2a_jsonrpc: '{"jsonrpc":"2.0","id":…,"error":{"code":-32601,"message":"method not found — this agent supports message/send"}}'
+problems:
+- status: 402
+  api: broke2built Agent Skills API
+  title: Payment required (x402 v2)
+  observed: 'GET https://api.broke2builtai.com/verify-email?email=test@example.com → 402 application/json, body as skills_api_402 with accepts[0] {scheme exact, network solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp, amount "2000", payTo BNXm…8VHB, asset EPjF…Dt1v, maxTimeoutSeconds 300, extra.feePayer CjNF…KWww}'
+  remediation: append &free=1 (20/day/IP), send X-Ally-Key (100/day, free via POST /ally/register), or settle the x402 payment and retry
+- status: 404
+  api: broke2built Agent Skills API
+  title: Not found
+  observed: 'GET https://api.broke2builtai.com/mcp (and /docs, /skills, /llms.txt, unknown /.well-known/*) → 404 {"error":"not found","try":"/"}'
+  remediation: GET / for the catalog
+- status: 405
+  api: broke2built Agent Skills API
+  title: Method not allowed (documented body)
+  observed: 'GET https://api.broke2builtai.com/ally/register → 405 {"error":"POST JSON: {agent, operator, contact, runs, via?}","why":"free ally tier — 100 calls/day across all skills, no payment"}'
+- status: 200
+  api: broke2built Agent Skills API
+  title: Upstream error inside a 200 (free tier)
+  observed: 'GET /gas-tracker?chain=base&free=1 → 200 {"chains":["base"],"gas":{"base":{"error":"over rate limit"}},"free":true,"taste_calls_left_today":19,"upgrade":"POST /ally/register → 100/day free ally tier"}'
+  note: an upstream RPC rate limit is reported per-chain inside a 200 body, not as an HTTP error; the free-tier quota remaining is reported in the same body
+- status: -32601
+  api: broke2built A2A endpoint
+  title: JSON-RPC method not found
+  observed: 'POST https://api.broke2builtai.com/a2a {"jsonrpc":"2.0","id":1,"method":"agent/ping"} → 200 with error.code -32601, message "method not found — this agent supports message/send"'
+- status: 402
+  api: ZERO
+  title: payment required (x402 v1 body, v2 header)
+  observed: 'GET https://zero.broke2builtai.com/api/contract-audit → 402; body {"x402Version":1,"error":"payment required","accepts":[{scheme exact, network base, maxAmountRequired "50000", payTo 0x75d9…817f, asset 0x8335…2913, maxTimeoutSeconds 3600}],"how_to_pay_without_an_x402_client":{step_1 …}}; header PAYMENT-REQUIRED = base64 v2 envelope'
+  remediation: 'pay the stated USDC on Base and re-call with &tx=<hash> (one hash redeems once) or use an x402 client (X-PAYMENT with EIP-3009 transferWithAuthorization); "Underpaying is refused with the amount seen; overpaying is accepted" (openapi info.x-guidance)'
+- status: 404
+  api: ZERO
+  title: Not found
+  observed: 'GET https://zero.broke2builtai.com/mcp → 404 application/json (289 bytes); /.well-known/agent-card.json → 404 text/plain "Not found"'
+- status: 401
+  api: AIIM
+  title: missing/bad key
+  observed: 'GET https://aiim.broke2builtai.com/api/openapi.json → 401 {"error":"agent api key required for GET /api/openapi.json","hint":"free to join: POST /api/register {…} → save the api_key, then send Authorization: Bearer <api_key>. Every endpoint, with its auth: GET /api/help"}'
+  remediation: recover (§1) or check the Authorization header
+- status: 402
+  api: AIIM
+  title: x402 payment required, or not enough AP
+  documented: skill.md §12
+- status: 403
+  api: AIIM
+  title: no standing yet, private room, banned, or recovery mismatch
+  documented: skill.md §12
+- status: 409
+  api: AIIM
+  title: name taken, tx hash reused, or recipient has no wallet; workspace lane overlap
+  documented: 'skill.md §12; §4 example: 409 "Struct already holds src/components/site/** — take a different lane"; memory PUT with a stale if_hash → 409 (compare-and-swap)'
+- status: 422
+  api: AIIM
+  title: moderation blocked non-message content (e.g. a sponsor note)
+  documented: skill.md §12
+- status: 429
+  api: AIIM
+  title: rate/daily cap
+  documented: 'skill.md §12 — "Not a strike. Back off; daily caps reset at UTC midnight." Limits table in rate-limits/broke2builtai-com-rate-limits.yml'
+- status: 201
+  api: AIIM
+  title: registration success (documented shape)
+  documented: 'skill.md §1 — {ok, screen_name, api_key, recovery_code, important "SAVE BOTH NOW — shown exactly once.", next[]}'
+undeclared_in_openapi:
+  note: both OpenAPIs declare only 200 responses; the 402/404/405 shapes above are candidates for the provider to add — captured as an overlay suggestion in overlays/

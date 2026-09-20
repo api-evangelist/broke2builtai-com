@@ -1,0 +1,307 @@
+generated: '2026-09-19'
+method: probed
+source: >-
+  Live GET probes of the named /.well-known/* path list on every host the record knows, 2026-09-19 — the apex
+  and www, the API host (api.broke2builtai.com, also the A2A and x402 host), zero.broke2builtai.com,
+  aiim.broke2builtai.com and abundance.broke2builtai.com. Every row is a request that was actually issued and
+  every status is the one returned. Browser User-Agent throughout.
+summary:
+  hosts_probed: 6
+  paths_probed: 58
+  documents_served: 8
+  note: >-
+    broke2built publishes an agent-discovery layer rather than an OAuth/OIDC one. Served documents: an A2A agent
+    card on the API host at both the canonical and legacy paths (plus a mirror at the legacy path on apex and
+    www), three x402 payment catalogs (api host x402Version 2 with 29 priced items; zero x402Version 1 with 6;
+    aiim x402Version 2 with 3), and an ERC-8004 agent-registration file on zero. There is NO security.txt (RFC
+    9116), no OpenID Connect discovery, no RFC 8414 authorization-server metadata, no RFC 9728 protected-resource
+    metadata, no RFC 9727 api-catalog, no ai-plugin.json and no MCP server card on any host — consistent with an
+    API whose only credentials are a free ally key and x402 micro-payments and whose MCP surface is a stdio
+    package, not a hosted server. Every miss is a real miss: the apex/www answer a 10,201-byte HTML page WITH a
+    404 status, the api host answers JSON {"error":"not found","try":"/"} with 404, zero answers "Not found" text
+    with 404, aiim answers an empty 404. abundance.broke2builtai.com is an SPA catch-all that answers 200
+    text/html (the 26,884-byte site shell) for every path — recorded below with real_document: false and NO file,
+    so it scores as the absence it is.
+  no_pointer_for: [security.txt, openid-configuration, oauth-authorization-server, oauth-protected-resource, api-catalog, ai-plugin.json, mcp.json, mcp/server-card.json, agents.json, apis.json]
+hosts:
+- host: broke2builtai.com
+  role: Company website (Astro static site on Cloudflare); apex mirror of the agent card
+  documents:
+  - path: /.well-known/agent.json
+    status: 200
+    content_type: application/json
+    file: a2a/broke2builtai-com-agent-card-apex-mirror.json
+    standard: A2A Agent Card (legacy pre-0.3 path)
+    note: Apex MIRROR of the canonical card on api.broke2builtai.com; identical 29 skills plus _canonical/_note/_kithnet/_generatedAt keys. Graded in a2a/broke2builtai-com-a2a.yml.
+  - path: /.well-known/agent-card.json
+    status: 404
+    content_type: text/html; charset=utf-8
+    note: real 404 (HTML error page, 10,201 bytes)
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/mcp.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  related_not_well_known:
+  - path: /llms.txt
+    status: 200
+    content_type: text/plain; charset=utf-8
+    file: llms/broke2builtai-com-llms.txt
+  - path: /llms-full.txt
+    status: 200
+    content_type: text/plain; charset=utf-8
+    note: 235,405 bytes; not saved (gitignored *-llms-full.txt convention)
+  - path: /robots.txt
+    status: 200
+    note: 'Allow: / for every user-agent, with an explicit Allow for GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot, Claude-User, PerplexityBot, Perplexity-User, Google-Extended, Applebot-Extended, CCBot and meta-externalagent, a comment welcoming AI answer engines, and Sitemap: https://broke2builtai.com/sitemap-index.xml. No Content-Signal directive.'
+  - path: /rss.xml
+    status: 200
+    content_type: application/xml
+  - path: /sitemap-index.xml
+    status: 200
+    content_type: application/xml
+- host: www.broke2builtai.com
+  role: www alias (serves the same site and the same mirror)
+  documents:
+  - path: /.well-known/agent.json
+    status: 200
+    content_type: application/json
+    file: a2a/broke2builtai-com-agent-card-apex-mirror.json
+    note: byte-identical to the apex mirror (16,715 bytes)
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: api.broke2builtai.com
+  role: API host — the 29 data skills, the 7-operation OpenAPI, the A2A endpoint and the x402 catalog (Cloudflare Worker)
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: application/json
+    file: a2a/broke2builtai-com-agent-card.json
+    standard: A2A Agent Card 0.3.0 (canonical RFC 8615 path)
+    note: The canonical card (11,600 bytes); graded conformant in a2a/broke2builtai-com-a2a.yml.
+  - path: /.well-known/agent.json
+    status: 200
+    content_type: application/json
+    file: a2a/broke2builtai-com-agent-card.json
+    standard: A2A Agent Card 0.3.0 (legacy path)
+    note: byte-identical to the canonical path
+  - path: /.well-known/x402
+    status: 200
+    content_type: application/json
+    file: broke2builtai-com-x402.json
+    standard: x402 discovery catalog (x402Version 2)
+    note: >-
+      29 items, one per skill, each with resource URL, method GET, discoverable true, lastUpdated 2026-09-04,
+      metadata {name, provider broke2built, category data-intelligence}, accepts[] {scheme exact, network
+      solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp, asset EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v (USDC), payTo
+      BNXmQ1Jo1QHuD5eboNeH2b2p44rnuxjtk7oTCdLg8VHB, amount in USDC micro-units, maxTimeoutSeconds 300}, an
+      inputSchema {type http, method GET, queryParams} and an outputSchema example. This is the only
+      machine-readable per-skill input contract for the 29 skills — the OpenAPI on the same host covers 7 other
+      operations.
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    content_type: application/json
+    note: 'JSON 404 {"error":"not found","try":"/"} — no RFC 9728 metadata'
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/mcp.json
+    status: 404
+  - path: /.well-known/mcp/server-card.json
+    status: 404
+  - path: /.well-known/erc8004.json
+    status: 404
+  - path: /.well-known/agents.json
+    status: 404
+  related_not_well_known:
+  - path: /
+    status: 200
+    content_type: application/json
+    note: the root is a JSON catalog — service, moat, free_tier, pay (x402 · Solana · USDC), payTo, facilitator https://facilitator.payai.network, count 29, discovery URL, and skills[] {path, price_usd, does}
+  - path: /openapi.json
+    status: 200
+    content_type: application/json
+    file: openapi/broke2builtai-com-skills-openapi.json
+  - path: /health
+    status: 200
+    note: '{"ok":true,"skills":29,"built":"2026-09-04T19:15:00.000Z"}'
+  - path: /selftest
+    status: 200
+    note: daily per-skill self-test — total 29, passed 29, failed 0, grade A, results[] {id, ok, ms}; cached/stale flags and ?fresh=1
+  - path: /kithnet
+    status: 200
+    note: KITHNET charter and member list (JSON)
+  - path: /robots.txt
+    status: 200
+    note: Cloudflare content-signals preamble (comments only) — no User-agent or Content-Signal directive lines
+  - path: /mcp
+    status: 404
+    note: no hosted MCP endpoint (POST tools/list also 404)
+  - path: /llms.txt
+    status: 404
+- host: zero.broke2builtai.com
+  role: ZERO — the autonomous-agent analysis API (6 paid endpoints on Base)
+  documents:
+  - path: /.well-known/x402
+    status: 200
+    content_type: application/json; charset=utf-8
+    file: broke2builtai-com-zero-x402.json
+    standard: x402 discovery catalog (x402Version 1 body)
+    note: >-
+      x402Version 1 / version 1, resources[6], seller ZERO, seller_wallet 0x75d93b33708e7cf5eb4dcf14dfc25254f5d5817f,
+      network base, asset 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913 (USDC), products[] {slug, price_usdc, title,
+      description, params, endpoint}. NOTE the version split: the catalog body is v1 and a live 402 on
+      /api/contract-audit returned a v1 JSON body ("maxAmountRequired") together with a base64 PAYMENT-REQUIRED
+      response HEADER carrying a v2 envelope (x402Version 2, "amount", network eip155:8453, extensions.bazaar).
+  - path: /.well-known/erc8004.json
+    status: 200
+    content_type: application/json
+    file: broke2builtai-com-zero-erc8004.json
+    standard: ERC-8004 agent registration (type erc8004/agent-registration/v1)
+    note: registrations[] {agentRegistry eip155:8453:0x8004A169FB4a3325136EB29fA0ceB6D2e539a432, agentId 84024}, owner 0xC94929d14435D80dd04b3206BfEA9F5dEBAbD57A, verify {chainId 8453, call ownerOf(84024)}, services[] {x402, openapi, ledger}, supportedTrust [reputation]. The on-chain registration was not read from the chain; the published file is the evidence.
+  - path: /.well-known/agent-card.json
+    status: 404
+    content_type: text/plain;charset=UTF-8
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  related_not_well_known:
+  - path: /openapi.json
+    status: 200
+    file: openapi/broke2builtai-com-zero-openapi.json
+  - path: /llms.txt
+    status: 200
+    file: llms/broke2builtai-com-zero-llms.txt
+  - path: /
+    status: 200
+    content_type: application/json
+    note: live status and balances (JSON; HTML in a browser)
+- host: aiim.broke2builtai.com
+  role: AIIM — the agent network / labour market (plain HTTPS+JSON API)
+  documents:
+  - path: /.well-known/x402
+    status: 200
+    content_type: application/json; charset=utf-8
+    file: broke2builtai-com-aiim-x402.json
+    standard: x402 discovery catalog (x402Version 2)
+    note: 3 items — POST /api/x402/sponsor ($1/day), /api/x402/priority-register ($0.25), /api/x402/tip — scheme exact-onchain, network base, USDC, payTo 0x7a3E312Ec6e20a9F62fE2405938EB9060312E334, with a "how" string (call → 402 → pay USDC on Base → repeat with X-PAYMENT tx hash).
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/erc8004.json
+    status: 404
+  related_not_well_known:
+  - path: /skill.md
+    status: 200
+    content_type: text/markdown
+    file: skills/broke2builtai-com-aiim-agent-handbook.md
+    note: the provider's own Agent Skill / handbook, 41,243 bytes
+  - path: /llms.txt
+    status: 200
+    file: llms/broke2builtai-com-aiim-llms.txt
+  - path: /api/help
+    status: 200
+    note: anonymous JSON self-description of every endpoint with its auth requirement
+  - path: /api/openapi.json
+    status: 401
+    note: 'GATED — {"error":"agent api key required for GET /api/openapi.json"}; an OpenAPI exists but needs a registered agent key, so it is not harvested'
+  - path: /mcp
+    status: 404
+- host: abundance.broke2builtai.com
+  role: Abundance research site — SPA catch-all, every path answers 200 text/html
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 200
+    content_type: text/html; charset=utf-8
+    real_document: false
+    result: html-catchall
+    note: REJECTED — the 26,884-byte site shell, identical to GET /; not a document
+  - path: /.well-known/agent.json
+    status: 200
+    content_type: text/html; charset=utf-8
+    real_document: false
+    result: html-catchall
+  - path: /.well-known/security.txt
+    status: 200
+    content_type: text/html; charset=utf-8
+    real_document: false
+    result: html-catchall
+  - path: /.well-known/openid-configuration
+    status: 200
+    content_type: text/html; charset=utf-8
+    real_document: false
+    result: html-catchall
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: text/html; charset=utf-8
+    real_document: false
+    result: html-catchall
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    content_type: text/html; charset=utf-8
+    real_document: false
+    result: html-catchall
+  - path: /.well-known/api-catalog
+    status: 200
+    content_type: text/html; charset=utf-8
+    real_document: false
+    result: html-catchall
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    content_type: text/html; charset=utf-8
+    real_document: false
+    result: html-catchall
