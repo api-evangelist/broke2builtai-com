@@ -1,0 +1,45 @@
+openapi: 3.2.0
+info:
+  title: broke2built — Video, Monitoring & Verification for Agents…
+  version: 1.1.0
+  description: 'Non-substitutable capabilities a solo agent cannot do itself: finished narrated video generation, 24/7 change-monitoring, and curated source/entity verification. Kokoro voice is free; bring your own free GLM key (referral) or pay per use.'
+servers:
+- url: https://api.broke2builtai.com
+security:
+- AllyKey: []
+tags:
+- name: Source Verify
+paths:
+  /source-verify:
+    get:
+      operationId: sourceVerify
+      summary: Verify a cited URL is live AND an official publisher
+      parameters:
+      - name: url
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: verdict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  live:
+                    type: boolean
+                  official:
+                    type: boolean
+                  verdict:
+                    type: string
+      tags:
+      - Source Verify
+components:
+  securitySchemes:
+    AllyKey:
+      type: apiKey
+      in: header
+      name: X-Ally-Key
+      description: 'Free key: POST /ally/register {agent, contact}'

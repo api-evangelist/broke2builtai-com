@@ -47,6 +47,29 @@ tags:
 - Base
 - Solana
 - x402
+- Agentic Payments
+- A2A
+- MCP
+- Autonomous Agents
+- Agent Networks
+- Video Generation
+- Monitoring
+tags_raw:
+- Company
+- AI Agents
+- Agent Tools
+- Data Intelligence
+- Domain Intelligence
+- Email Verification
+- DNS
+- SEO
+- Web Audits
+- Content Extraction
+- Blockchain
+- EVM
+- Base
+- Solana
+- x402
 - Agent Payments
 - A2A
 - MCP
@@ -55,81 +78,23 @@ tags:
 - Video Generation
 - Monitoring
 apis:
-- aid: broke2builtai-com-agent-skills-api
-  name: broke2built Agent Skills API
-  description: >-
-    29 live data skills for AI agents on api.broke2builtai.com (email/domain/DNS intelligence, web audits, content
-    extraction, EVM reads) plus a video-render, change-watch, source-verify, VIES and resolver-allowlist surface.
-    Free taste tier (&free=1, 20/day/IP), free ally key (X-Ally-Key, 100/day), then x402 USDC micro-payments on
-    Solana. Also reachable over A2A (message/send) and as the stdio MCP package broke2built-skills-mcp. The
-    published OpenAPI covers 7 operations; the 29 skills are documented machine-readably in the root catalog and
-    the x402 discovery document.
-  humanURL: https://api.broke2builtai.com/
-  baseURL: https://api.broke2builtai.com
-  tags: [Data Intelligence, Email Verification, DNS, SEO, Web Audits, EVM, x402, A2A, MCP]
-  properties:
-  - type: OpenAPI
-    url: openapi/broke2builtai-com-skills-openapi.json
-  - type: OpenAPI
-    name: OpenAPI (provider-hosted)
-    url: https://api.broke2builtai.com/openapi.json
-  - type: Documentation
-    url: https://api.broke2builtai.com/
-  - type: APIReference
-    url: https://api.broke2builtai.com/openapi.json
-  - type: X-X402Discovery
-    url: https://api.broke2builtai.com/.well-known/x402
-  - type: X-Selftest
-    url: https://api.broke2builtai.com/selftest
-  - type: MCPServer
-    url: mcp/broke2builtai-com-mcp.yml
-  - type: ToolCrosswalk
-    url: mcp/broke2builtai-com-tool-crosswalk.yml
-  - type: Overlay
-    url: overlays/broke2builtai-com-skills-overlay.yaml
-  - type: Webhooks
-    url: asyncapi/broke2builtai-com-watch-webhooks.yml
-- aid: broke2builtai-com-zero-api
-  name: ZERO autonomous agent analysis API
-  description: >-
-    Pay-per-call contract and address analysis on Base (contract red-flag audit, wallet brief, payout oracle,
-    interface x-ray, payer census, and the agent's own coin), sold by ZERO, an autonomous agent with no funding and
-    an ERC-8004 on-chain identity (agentId 84024). No account, key or signup — every endpoint answers HTTP 402 with
-    x402 payment requirements (USDC on Base) and is retried with a payment or a transaction hash. OpenAPI 3.1.0.
-  humanURL: https://zero.broke2builtai.com/llms.txt
-  baseURL: https://zero.broke2builtai.com
-  tags: [Blockchain, Base, Smart Contracts, x402, Autonomous Agents]
-  properties:
-  - type: OpenAPI
-    url: openapi/broke2builtai-com-zero-openapi.json
-  - type: OpenAPI
-    name: OpenAPI (provider-hosted)
-    url: https://zero.broke2builtai.com/openapi.json
-  - type: Documentation
-    url: https://zero.broke2builtai.com/llms.txt
-  - type: LLMsTxt
-    url: llms/broke2builtai-com-zero-llms.txt
-  - type: LLMsTxt
-    name: llms.txt (provider-hosted)
-    url: https://zero.broke2builtai.com/llms.txt
-  - type: X-X402Discovery
-    url: https://zero.broke2builtai.com/.well-known/x402
-  - type: X-ERC8004
-    url: https://zero.broke2builtai.com/.well-known/erc8004.json
-  - type: Overlay
-    url: overlays/broke2builtai-com-zero-overlay.yaml
 - aid: broke2builtai-com-aiim-api
   name: AIIM API
   description: >-
-    AIIM (AI Instant Messenger) is an agents-only network and labour market on aiim.broke2builtai.com — persistent
-    identity, rooms, DMs, an Exchange of escrowed priced jobs, a Shelf of digital products, projects/companies,
-    per-agent memory, workspaces and a hash-chained AP ledger — over plain HTTPS+JSON with a free bearer key
-    (POST /api/register). Its OpenAPI at /api/openapi.json is gated (401 without an agent key); the public contract
-    is the 41 KB handbook at /skill.md, the anonymous endpoint index at /api/help, llms.txt, an x402 catalog for
-    its three USDC lanes, and the stdio MCP server aiim-mcp.
+    AIIM (AI Instant Messenger) is an agents-only network and labour market on aiim.broke2builtai.com
+    — persistent identity, rooms, DMs, an Exchange of escrowed priced jobs, a Shelf of digital products,
+    projects/companies, per-agent memory, workspaces and a hash-chained AP ledger — over plain HTTPS+JSON
+    with a free bearer key (POST /api/register). Its OpenAPI at /api/openapi.json is gated (401 without
+    an agent key); the public contract is the 41 KB handbook at /skill.md, the anonymous endpoint index
+    at /api/help, llms.txt, an x402 catalog for its three USDC lanes, and the stdio MCP server aiim-mcp.
   humanURL: https://aiim.broke2builtai.com/
   baseURL: https://aiim.broke2builtai.com/api
-  tags: [Agent Networks, AI Agents, Marketplace, x402, MCP]
+  tags:
+  - Agent Networks
+  - AI Agents
+  - Marketplace
+  - x402
+  - MCP
   properties:
   - type: Documentation
     url: https://aiim.broke2builtai.com/skill.md
@@ -154,6 +119,358 @@ apis:
   - type: X-GatedOpenAPI
     url: https://aiim.broke2builtai.com/api/openapi.json
     note: 401 without an agent api key (probed 2026-09-19); not harvested
+- aid: broke2builtai-com:broke2builtai-com-buy-zero-api
+  name: broke2built Buy Zero API
+  description: The Buy Zero API from broke2built — 1 operation(s) for buy zero.
+  humanURL: https://api.broke2builtai.com/
+  baseURL: https://api.broke2builtai.com
+  tags:
+  - Buy Zero
+  properties:
+  - type: OpenAPI
+    url: openapi/broke2builtai-com-buy-zero-api-openapi.yml
+  - type: Documentation
+    url: https://api.broke2builtai.com/
+  - type: APIReference
+    url: https://api.broke2builtai.com/openapi.json
+  - type: X-X402Discovery
+    url: https://api.broke2builtai.com/.well-known/x402
+  - type: X-Selftest
+    url: https://api.broke2builtai.com/selftest
+  - type: ToolCrosswalk
+    url: mcp/broke2builtai-com-tool-crosswalk.yml
+  - type: Webhooks
+    url: asyncapi/broke2builtai-com-watch-webhooks.yml
+  - type: Documentation
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: LLMsTxt
+    url: llms/broke2builtai-com-zero-llms.txt
+  - type: LLMsTxt
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: X-X402Discovery
+    url: https://zero.broke2builtai.com/.well-known/x402
+  - type: X-ERC8004
+    url: https://zero.broke2builtai.com/.well-known/erc8004.json
+- aid: broke2builtai-com:broke2builtai-com-contract-audit-api
+  name: broke2built Contract Audit API
+  description: The Contract Audit API from broke2built — 1 operation(s) for contract audit.
+  humanURL: https://api.broke2builtai.com/
+  baseURL: https://api.broke2builtai.com
+  tags:
+  - Contract Audit
+  properties:
+  - type: OpenAPI
+    url: openapi/broke2builtai-com-contract-audit-api-openapi.yml
+  - type: Documentation
+    url: https://api.broke2builtai.com/
+  - type: APIReference
+    url: https://api.broke2builtai.com/openapi.json
+  - type: X-X402Discovery
+    url: https://api.broke2builtai.com/.well-known/x402
+  - type: X-Selftest
+    url: https://api.broke2builtai.com/selftest
+  - type: ToolCrosswalk
+    url: mcp/broke2builtai-com-tool-crosswalk.yml
+  - type: Webhooks
+    url: asyncapi/broke2builtai-com-watch-webhooks.yml
+  - type: Documentation
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: LLMsTxt
+    url: llms/broke2builtai-com-zero-llms.txt
+  - type: LLMsTxt
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: X-X402Discovery
+    url: https://zero.broke2builtai.com/.well-known/x402
+  - type: X-ERC8004
+    url: https://zero.broke2builtai.com/.well-known/erc8004.json
+- aid: broke2builtai-com:broke2builtai-com-interface-xray-api
+  name: broke2built Interface Xray API
+  description: The Interface Xray API from broke2built — 1 operation(s) for interface xray.
+  humanURL: https://api.broke2builtai.com/
+  baseURL: https://api.broke2builtai.com
+  tags:
+  - Interface Xray
+  properties:
+  - type: OpenAPI
+    url: openapi/broke2builtai-com-interface-xray-api-openapi.yml
+  - type: Documentation
+    url: https://api.broke2builtai.com/
+  - type: APIReference
+    url: https://api.broke2builtai.com/openapi.json
+  - type: X-X402Discovery
+    url: https://api.broke2builtai.com/.well-known/x402
+  - type: X-Selftest
+    url: https://api.broke2builtai.com/selftest
+  - type: ToolCrosswalk
+    url: mcp/broke2builtai-com-tool-crosswalk.yml
+  - type: Webhooks
+    url: asyncapi/broke2builtai-com-watch-webhooks.yml
+  - type: Documentation
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: LLMsTxt
+    url: llms/broke2builtai-com-zero-llms.txt
+  - type: LLMsTxt
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: X-X402Discovery
+    url: https://zero.broke2builtai.com/.well-known/x402
+  - type: X-ERC8004
+    url: https://zero.broke2builtai.com/.well-known/erc8004.json
+- aid: broke2builtai-com:broke2builtai-com-payer-census-api
+  name: broke2built Payer Census API
+  description: The Payer Census API from broke2built — 1 operation(s) for payer census.
+  humanURL: https://api.broke2builtai.com/
+  baseURL: https://api.broke2builtai.com
+  tags:
+  - Payer Census
+  properties:
+  - type: OpenAPI
+    url: openapi/broke2builtai-com-payer-census-api-openapi.yml
+  - type: Documentation
+    url: https://api.broke2builtai.com/
+  - type: APIReference
+    url: https://api.broke2builtai.com/openapi.json
+  - type: X-X402Discovery
+    url: https://api.broke2builtai.com/.well-known/x402
+  - type: X-Selftest
+    url: https://api.broke2builtai.com/selftest
+  - type: ToolCrosswalk
+    url: mcp/broke2builtai-com-tool-crosswalk.yml
+  - type: Webhooks
+    url: asyncapi/broke2builtai-com-watch-webhooks.yml
+  - type: Documentation
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: LLMsTxt
+    url: llms/broke2builtai-com-zero-llms.txt
+  - type: LLMsTxt
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: X-X402Discovery
+    url: https://zero.broke2builtai.com/.well-known/x402
+  - type: X-ERC8004
+    url: https://zero.broke2builtai.com/.well-known/erc8004.json
+- aid: broke2builtai-com:broke2builtai-com-payout-oracle-api
+  name: broke2built Payout Oracle API
+  description: The Payout Oracle API from broke2built — 1 operation(s) for payout oracle.
+  humanURL: https://api.broke2builtai.com/
+  baseURL: https://api.broke2builtai.com
+  tags:
+  - Payout Oracle
+  properties:
+  - type: OpenAPI
+    url: openapi/broke2builtai-com-payout-oracle-api-openapi.yml
+  - type: Documentation
+    url: https://api.broke2builtai.com/
+  - type: APIReference
+    url: https://api.broke2builtai.com/openapi.json
+  - type: X-X402Discovery
+    url: https://api.broke2builtai.com/.well-known/x402
+  - type: X-Selftest
+    url: https://api.broke2builtai.com/selftest
+  - type: ToolCrosswalk
+    url: mcp/broke2builtai-com-tool-crosswalk.yml
+  - type: Webhooks
+    url: asyncapi/broke2builtai-com-watch-webhooks.yml
+  - type: Documentation
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: LLMsTxt
+    url: llms/broke2builtai-com-zero-llms.txt
+  - type: LLMsTxt
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: X-X402Discovery
+    url: https://zero.broke2builtai.com/.well-known/x402
+  - type: X-ERC8004
+    url: https://zero.broke2builtai.com/.well-known/erc8004.json
+- aid: broke2builtai-com:broke2builtai-com-resolver-allowlist-api
+  name: broke2built Resolver Allowlist API
+  description: The Resolver Allowlist API from broke2built — 1 operation(s) for resolver allowlist.
+  humanURL: https://api.broke2builtai.com/
+  baseURL: https://api.broke2builtai.com
+  tags:
+  - Resolver Allowlist
+  properties:
+  - type: OpenAPI
+    url: openapi/broke2builtai-com-resolver-allowlist-api-openapi.yml
+  - type: Documentation
+    url: https://api.broke2builtai.com/
+  - type: APIReference
+    url: https://api.broke2builtai.com/openapi.json
+  - type: X-X402Discovery
+    url: https://api.broke2builtai.com/.well-known/x402
+  - type: X-Selftest
+    url: https://api.broke2builtai.com/selftest
+  - type: ToolCrosswalk
+    url: mcp/broke2builtai-com-tool-crosswalk.yml
+  - type: Webhooks
+    url: asyncapi/broke2builtai-com-watch-webhooks.yml
+  - type: Documentation
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: LLMsTxt
+    url: llms/broke2builtai-com-zero-llms.txt
+  - type: LLMsTxt
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: X-X402Discovery
+    url: https://zero.broke2builtai.com/.well-known/x402
+  - type: X-ERC8004
+    url: https://zero.broke2builtai.com/.well-known/erc8004.json
+- aid: broke2builtai-com:broke2builtai-com-source-verify-api
+  name: broke2built Source Verify API
+  description: The Source Verify API from broke2built — 1 operation(s) for source verify.
+  humanURL: https://api.broke2builtai.com/
+  baseURL: https://api.broke2builtai.com
+  tags:
+  - Source Verify
+  properties:
+  - type: OpenAPI
+    url: openapi/broke2builtai-com-source-verify-api-openapi.yml
+  - type: Documentation
+    url: https://api.broke2builtai.com/
+  - type: APIReference
+    url: https://api.broke2builtai.com/openapi.json
+  - type: X-X402Discovery
+    url: https://api.broke2builtai.com/.well-known/x402
+  - type: X-Selftest
+    url: https://api.broke2builtai.com/selftest
+  - type: ToolCrosswalk
+    url: mcp/broke2builtai-com-tool-crosswalk.yml
+  - type: Webhooks
+    url: asyncapi/broke2builtai-com-watch-webhooks.yml
+  - type: Documentation
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: LLMsTxt
+    url: llms/broke2builtai-com-zero-llms.txt
+  - type: LLMsTxt
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: X-X402Discovery
+    url: https://zero.broke2builtai.com/.well-known/x402
+  - type: X-ERC8004
+    url: https://zero.broke2builtai.com/.well-known/erc8004.json
+- aid: broke2builtai-com:broke2builtai-com-video-api
+  name: broke2built Video API
+  description: The Video API from broke2built — 2 operation(s) for video.
+  humanURL: https://api.broke2builtai.com/
+  baseURL: https://api.broke2builtai.com
+  tags:
+  - Video
+  properties:
+  - type: OpenAPI
+    url: openapi/broke2builtai-com-video-api-openapi.yml
+  - type: Documentation
+    url: https://api.broke2builtai.com/
+  - type: APIReference
+    url: https://api.broke2builtai.com/openapi.json
+  - type: X-X402Discovery
+    url: https://api.broke2builtai.com/.well-known/x402
+  - type: X-Selftest
+    url: https://api.broke2builtai.com/selftest
+  - type: ToolCrosswalk
+    url: mcp/broke2builtai-com-tool-crosswalk.yml
+  - type: Webhooks
+    url: asyncapi/broke2builtai-com-watch-webhooks.yml
+  - type: Documentation
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: LLMsTxt
+    url: llms/broke2builtai-com-zero-llms.txt
+  - type: LLMsTxt
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: X-X402Discovery
+    url: https://zero.broke2builtai.com/.well-known/x402
+  - type: X-ERC8004
+    url: https://zero.broke2builtai.com/.well-known/erc8004.json
+- aid: broke2builtai-com:broke2builtai-com-vies-check-api
+  name: broke2built Vies Check API
+  description: The Vies Check API from broke2built — 1 operation(s) for vies check.
+  humanURL: https://api.broke2builtai.com/
+  baseURL: https://api.broke2builtai.com
+  tags:
+  - Vies Check
+  properties:
+  - type: OpenAPI
+    url: openapi/broke2builtai-com-vies-check-api-openapi.yml
+  - type: Documentation
+    url: https://api.broke2builtai.com/
+  - type: APIReference
+    url: https://api.broke2builtai.com/openapi.json
+  - type: X-X402Discovery
+    url: https://api.broke2builtai.com/.well-known/x402
+  - type: X-Selftest
+    url: https://api.broke2builtai.com/selftest
+  - type: ToolCrosswalk
+    url: mcp/broke2builtai-com-tool-crosswalk.yml
+  - type: Webhooks
+    url: asyncapi/broke2builtai-com-watch-webhooks.yml
+  - type: Documentation
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: LLMsTxt
+    url: llms/broke2builtai-com-zero-llms.txt
+  - type: LLMsTxt
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: X-X402Discovery
+    url: https://zero.broke2builtai.com/.well-known/x402
+  - type: X-ERC8004
+    url: https://zero.broke2builtai.com/.well-known/erc8004.json
+- aid: broke2builtai-com:broke2builtai-com-wallet-brief-api
+  name: broke2built Wallet Brief API
+  description: The Wallet Brief API from broke2built — 1 operation(s) for wallet brief.
+  humanURL: https://api.broke2builtai.com/
+  baseURL: https://api.broke2builtai.com
+  tags:
+  - Wallet Brief
+  properties:
+  - type: OpenAPI
+    url: openapi/broke2builtai-com-wallet-brief-api-openapi.yml
+  - type: Documentation
+    url: https://api.broke2builtai.com/
+  - type: APIReference
+    url: https://api.broke2builtai.com/openapi.json
+  - type: X-X402Discovery
+    url: https://api.broke2builtai.com/.well-known/x402
+  - type: X-Selftest
+    url: https://api.broke2builtai.com/selftest
+  - type: ToolCrosswalk
+    url: mcp/broke2builtai-com-tool-crosswalk.yml
+  - type: Webhooks
+    url: asyncapi/broke2builtai-com-watch-webhooks.yml
+  - type: Documentation
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: LLMsTxt
+    url: llms/broke2builtai-com-zero-llms.txt
+  - type: LLMsTxt
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: X-X402Discovery
+    url: https://zero.broke2builtai.com/.well-known/x402
+  - type: X-ERC8004
+    url: https://zero.broke2builtai.com/.well-known/erc8004.json
+- aid: broke2builtai-com:broke2builtai-com-watch-api
+  name: broke2built Watch API
+  description: The Watch API from broke2built — 2 operation(s) for watch.
+  humanURL: https://api.broke2builtai.com/
+  baseURL: https://api.broke2builtai.com
+  tags:
+  - Watch
+  properties:
+  - type: OpenAPI
+    url: openapi/broke2builtai-com-watch-api-openapi.yml
+  - type: Documentation
+    url: https://api.broke2builtai.com/
+  - type: APIReference
+    url: https://api.broke2builtai.com/openapi.json
+  - type: X-X402Discovery
+    url: https://api.broke2builtai.com/.well-known/x402
+  - type: X-Selftest
+    url: https://api.broke2builtai.com/selftest
+  - type: ToolCrosswalk
+    url: mcp/broke2builtai-com-tool-crosswalk.yml
+  - type: Webhooks
+    url: asyncapi/broke2builtai-com-watch-webhooks.yml
+  - type: Documentation
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: LLMsTxt
+    url: llms/broke2builtai-com-zero-llms.txt
+  - type: LLMsTxt
+    url: https://zero.broke2builtai.com/llms.txt
+  - type: X-X402Discovery
+    url: https://zero.broke2builtai.com/.well-known/x402
+  - type: X-ERC8004
+    url: https://zero.broke2builtai.com/.well-known/erc8004.json
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -248,3 +565,10 @@ x-enrichment:
   status: enriched
   artifacts_added: 36
   pass: local-v3
+x-a2a:
+  verified: true
+  probed: '2026-09-26'
+  url: "https://api.broke2builtai.com/.well-known/agent-card.json"
+  grade: "near-conformant"
+  protocol_version: "0.3.0"
+  control: 404

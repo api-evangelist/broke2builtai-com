@@ -1,0 +1,56 @@
+{
+  "provider": "broke2builtai-com",
+  "sources": [
+    "broke2builtai-com-skills-openapi.json",
+    "broke2builtai-com-zero-openapi.json"
+  ],
+  "outputs": [
+    "broke2builtai-com-resolver-allowlist-api-openapi.yml",
+    "broke2builtai-com-source-verify-api-openapi.yml",
+    "broke2builtai-com-video-api-openapi.yml",
+    "broke2builtai-com-vies-check-api-openapi.yml",
+    "broke2builtai-com-watch-api-openapi.yml",
+    "broke2builtai-com-buy-zero-api-openapi.yml",
+    "broke2builtai-com-contract-audit-api-openapi.yml",
+    "broke2builtai-com-interface-xray-api-openapi.yml",
+    "broke2builtai-com-payer-census-api-openapi.yml",
+    "broke2builtai-com-payout-oracle-api-openapi.yml",
+    "broke2builtai-com-wallet-brief-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/broke2builtai-com-skills-openapi.json",
+    "archived openapi/broke2builtai-com-zero-openapi.json"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "broke2builtai-com-skills-openapi.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "broke2builtai-com-skills-openapi.json: tagged paths POST /video -> Video",
+    "broke2builtai-com-skills-openapi.json: tagged paths GET /video/{id} -> Video",
+    "broke2builtai-com-skills-openapi.json: tagged paths POST /watch -> Watch",
+    "broke2builtai-com-skills-openapi.json: tagged paths GET /watch/{id} -> Watch",
+    "broke2builtai-com-skills-openapi.json: tagged paths GET /source-verify -> Source Verify",
+    "broke2builtai-com-skills-openapi.json: tagged paths GET /vies-check -> Vies Check",
+    "broke2builtai-com-skills-openapi.json: tagged paths GET /resolver-allowlist -> Resolver Allowlist",
+    "broke2builtai-com-skills-openapi.json: declared missing tag: Resolver Allowlist",
+    "broke2builtai-com-skills-openapi.json: declared missing tag: Source Verify",
+    "broke2builtai-com-skills-openapi.json: declared missing tag: Video",
+    "broke2builtai-com-skills-openapi.json: declared missing tag: Vies Check",
+    "broke2builtai-com-skills-openapi.json: declared missing tag: Watch",
+    "broke2builtai-com-zero-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "broke2builtai-com-zero-openapi.json: tagged paths GET /api/contract-audit -> Contract Audit",
+    "broke2builtai-com-zero-openapi.json: tagged paths GET /api/wallet-brief -> Wallet Brief",
+    "broke2builtai-com-zero-openapi.json: tagged paths GET /api/payout-oracle -> Payout Oracle",
+    "broke2builtai-com-zero-openapi.json: tagged paths GET /api/interface-xray -> Interface Xray",
+    "broke2builtai-com-zero-openapi.json: tagged paths GET /api/payer-census -> Payer Census",
+    "broke2builtai-com-zero-openapi.json: tagged paths GET /api/buy-zero -> Buy Zero",
+    "broke2builtai-com-zero-openapi.json: declared missing tag: Buy Zero",
+    "broke2builtai-com-zero-openapi.json: declared missing tag: Contract Audit",
+    "broke2builtai-com-zero-openapi.json: declared missing tag: Interface Xray",
+    "broke2builtai-com-zero-openapi.json: declared missing tag: Payer Census",
+    "broke2builtai-com-zero-openapi.json: declared missing tag: Payout Oracle",
+    "broke2builtai-com-zero-openapi.json: declared missing tag: Wallet Brief",
+    "apis.yml register: written (+11 apis, 12 total)"
+  ],
+  "skipped": []
+}

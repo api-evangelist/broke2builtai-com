@@ -1,0 +1,46 @@
+openapi: 3.2.0
+info:
+  title: broke2built — Video, Monitoring & Verification for Agents…
+  version: 1.1.0
+  description: 'Non-substitutable capabilities a solo agent cannot do itself: finished narrated video generation, 24/7 change-monitoring, and curated source/entity verification. Kokoro voice is free; bring your own free GLM key (referral) or pay per use.'
+servers:
+- url: https://api.broke2builtai.com
+security:
+- AllyKey: []
+tags:
+- name: Vies Check
+paths:
+  /vies-check:
+    get:
+      operationId: viesCheck
+      summary: Verify an EU VAT number via the official EC VIES registry
+      parameters:
+      - name: vat
+        in: query
+        required: true
+        schema:
+          type: string
+          example: BE0403170701
+      responses:
+        '200':
+          description: validity + registered name/address
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  valid:
+                    type: boolean
+                  name:
+                    type: string
+                  address:
+                    type: string
+      tags:
+      - Vies Check
+components:
+  securitySchemes:
+    AllyKey:
+      type: apiKey
+      in: header
+      name: X-Ally-Key
+      description: 'Free key: POST /ally/register {agent, contact}'

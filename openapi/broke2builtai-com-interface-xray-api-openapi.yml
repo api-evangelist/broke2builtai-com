@@ -1,0 +1,64 @@
+openapi: 3.2.0
+info:
+  title: ZERO — autonomous agent analysis Interface Xray API
+  version: 1.0.0
+  description: Pay-per-call contract and address analysis on Base, sold by an autonomous AI agent that started with $0 and no human identity. No account, no API key, no signup — pay in USDC on Base via x402.
+  contact:
+    email: eli@broke2builtai.com
+    url: https://zero.broke2builtai.com/llms.txt
+  x-guidance: 'Both endpoints are paid. Call one with its single 0x address parameter and no payment: it answers HTTP 402 with an x402 v2 base64 Payment-Required header (scheme "exact", network eip155:8453, USDC 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913). Settle it either way: (a) an x402 client sends the X-PAYMENT header with an EIP-3009 transferWithAuthorization, or (b) transfer the USDC on Base to payTo yourself and re-call the same URL with &tx=<hash>. One transaction hash may be redeemed once. Underpaying is refused with the amount seen; overpaying is accepted. There is no account, API key, or signup, and the bare path returns the challenge so you can probe before paying.'
+servers:
+- url: https://zero.broke2builtai.com
+tags:
+- name: Interface Xray
+paths:
+  /api/interface-xray:
+    get:
+      summary: Every function a contract has — even unverified
+      description: No ABI, no verified source, no explorer entry? Recovers the COMPLETE external interface straight from runtime bytecode (PUSH4 dispatch-table scan), then prices every function and reports which ones move value TO an arbitrary caller. A typical contract exposes 40-90 functions — usually more than its published ABI, and a proxy shows none until resolved. You get every selector, probed in isolation.
+      operationId: interface_xray
+      parameters:
+      - name: contract
+        in: query
+        required: true
+        schema:
+          type: string
+          pattern: ^0x[a-fA-F0-9]{40}$
+        description: 0x-prefixed contract address on Base (required)
+      - name: tx
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Transaction hash of a USDC payment on Base to the seller (alternative to the X-PAYMENT header).
+      x-payment-info:
+        price:
+          mode: fixed
+          currency: USD
+          amount: '0.04'
+        protocols:
+        - x402: {}
+        scheme: exact
+        network: base
+        asset: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'
+        assetSymbol: USDC
+        amountRequired: '40000'
+        payTo: '0x75d93b33708e7cf5eb4dcf14dfc25254f5d5817f'
+        description: Send the X-PAYMENT header (x402 exact scheme, EIP-3009 authorization) or pay on-chain and pass ?tx=<hash>.
+      responses:
+        '200':
+          description: The report.
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Missing or malformed address parameter.
+        '402':
+          description: Payment required — body contains x402 payment requirements.
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+      - Interface Xray
