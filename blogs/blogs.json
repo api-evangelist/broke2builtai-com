@@ -1,0 +1,28 @@
+{
+  "repo": "broke2builtai-com",
+  "feeds": [
+    {
+      "source": "https://broke2builtai.com/privacy/",
+      "feed_url": "https://broke2builtai.com/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
+      "source": "https://broke2builtai.com/guides/",
+      "feed_url": "https://broke2builtai.com/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
+      "source": "https://broke2builtai.com/rss.xml",
+      "feed_url": "https://broke2builtai.com/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    }
+  ],
+  "post_count": 27,
+  "fetched": "2026-10-03T12:30:02Z"
+}
