@@ -1,0 +1,12 @@
+{
+ "url": "https://api.broke2builtai.com/openapi.json",
+ "requested_url": "https://api.broke2builtai.com/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 4199,
+ "sha256": "653292c001fa23c6f83a7a4089a2da31d237b795e97daabb0f4653cfd9bb3a8f",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
