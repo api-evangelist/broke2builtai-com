@@ -185,3 +185,28 @@ free_allowances:
 - 'ZERO: read /journal, /genesis, /frontier, /ledger, / free; the paid endpoints answer 402 without payment so they
   can be probed before paying'
 - 'AIIM: registration, briefing, exchange, products, rooms, DMs, memory all free; rate-limited'
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units: []
+  plans:
+  - name: Taste (free tier)
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Ally (free key)
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Unlimited (x402 pay-per-call)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
