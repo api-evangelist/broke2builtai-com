@@ -11,7 +11,7 @@ info:
     only in its root catalog and x402 discovery document. This overlay does NOT add those 29 paths (that would be
     authoring a contract the provider did not publish); it records where they are and adds the observed error
     envelopes, tags and external docs to the operations that exist.
-extends: broke2builtai-com-skills-openapi.json
+extends: ../openapi/_original/broke2builtai-com-skills-openapi.json
 actions:
 - target: $.info
   update:

@@ -1,0 +1,78 @@
+generated: '2026-10-20'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/broke2builtai-com-buy-zero-api-openapi.yml
+- openapi/broke2builtai-com-contract-audit-api-openapi.yml
+- openapi/broke2builtai-com-interface-xray-api-openapi.yml
+- openapi/broke2builtai-com-payer-census-api-openapi.yml
+- openapi/broke2builtai-com-payout-oracle-api-openapi.yml
+vocabulary:
+  name: broke2built Domain Vocabulary
+  description: 'Terms declared by broke2built''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-20'
+  terms:
+  - term: Buy Zero
+    definition: 'Resource group in the contract; its operation GET /api/buy-zero: ZERO deployed its own Zora content coin on Base (0xa08c4Bb56030E923e16bF0ab22248eC4AC9b661c)
+      with its own wallet and holds the creator supply.'
+    tags:
+    - Resource Group
+    source: openapi/broke2builtai-com-buy-zero-api-openapi.yml
+  - term: Contract Audit
+    definition: 'Resource group in the contract; its operation GET /api/contract-audit: Know whether a contract can rug you before you touch it:
+      owner powers, mint/blacklist/pause authority, fee logic, upgradeability — each finding quoted from the specific verified-source line that
+      justifies it.'
+    tags:
+    - Resource Group
+    source: openapi/broke2builtai-com-contract-audit-api-openapi.yml
+  - term: Interface Xray
+    definition: 'Resource group in the contract; its operation GET /api/interface-xray: No ABI, no verified source, no explorer entry?'
+    tags:
+    - Resource Group
+    source: openapi/broke2builtai-com-interface-xray-api-openapi.yml
+  - term: Payer Census
+    definition: 'Resource group in the contract; its operation GET /api/payer-census: The verified census of contracts that move value to an arbitrary
+      caller, graded by simulating each payout from a neutral address and pricing what actually lands.'
+    tags:
+    - Resource Group
+    source: openapi/broke2builtai-com-payer-census-api-openapi.yml
+  - term: Payout Oracle
+    definition: 'Resource group in the contract; its operation GET /api/payout-oracle: Before you spend gas on a call: the EXACT fee this contract
+      pays an arbitrary caller right now, measured by simulating the settlement itself — never read off a getter.'
+    tags:
+    - Resource Group
+    source: openapi/broke2builtai-com-payout-oracle-api-openapi.yml
+  - term: Resolver Allowlist
+    definition: 'Resource group in the contract; its operation GET /resolver-allowlist: Versioned first-party ENS and Basenames public-resolver
+      deployment set'
+    tags:
+    - Resource Group
+    source: openapi/broke2builtai-com-resolver-allowlist-api-openapi.yml
+  - term: Source Verify
+    definition: 'Resource group in the contract; its operation GET /source-verify: Verify a cited URL is live AND an official publisher'
+    tags:
+    - Resource Group
+    source: openapi/broke2builtai-com-source-verify-api-openapi.yml
+  - term: Video
+    definition: 'Resource group in the contract; its operation POST /video: Full pipeline: retention script → Kokoro neural voice → animated scenes
+      → captions+music → h264 mp4 + title/tags kit.'
+    tags:
+    - Resource Group
+    source: openapi/broke2builtai-com-video-api-openapi.yml
+  - term: Vies Check
+    definition: 'Resource group in the contract; its operation GET /vies-check: Verify an EU VAT number via the official EC VIES registry'
+    tags:
+    - Resource Group
+    source: openapi/broke2builtai-com-vies-check-api-openapi.yml
+  - term: Wallet Brief
+    definition: 'Resource group in the contract; its operation GET /api/wallet-brief: Plain-language brief on any Base address: age, transaction
+      and transfer counts, token holdings, contract-or-EOA, and what the recent activity pattern suggests.'
+    tags:
+    - Resource Group
+    source: openapi/broke2builtai-com-wallet-brief-api-openapi.yml
+  - term: Watch
+    definition: 'Resource group in the contract; its operation POST /watch: Continuity-as-a-service: we check every 2h and notify on change.'
+    tags:
+    - Resource Group
+    source: openapi/broke2builtai-com-watch-api-openapi.yml

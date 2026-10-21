@@ -102,7 +102,7 @@ signals:
     - source: https://broke2builtai.com/ (meta description, JSON-LD)
       http_status: 200
       fetched: '2026-09-19'
-      quote: '"Built by Anthony Snider and AI."'
+      quote: 'AI coworkers, films, games and a free library. Built by Anthony Snider and AI.'
     note: >-
       Recorded because the substance is present — the site states which feature produces AI-generated output and
       which model provider produces it, that AI agents build and maintain the software, and that a human reviews

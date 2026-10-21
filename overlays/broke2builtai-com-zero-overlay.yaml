@@ -6,7 +6,7 @@ info:
   x-method: generated
   x-source: openapi/broke2builtai-com-zero-openapi.json (verbatim from https://zero.broke2builtai.com/openapi.json) plus a live 402 observed 2026-09-19
   x-note: The provider's spec documents the x402 flow in prose (info.x-guidance) but declares only 200 responses; this overlay adds the observed 402 as a reusable response and external docs. The original is never mutated.
-extends: broke2builtai-com-zero-openapi.json
+extends: ../openapi/_original/broke2builtai-com-zero-openapi.json
 actions:
 - target: $
   update:

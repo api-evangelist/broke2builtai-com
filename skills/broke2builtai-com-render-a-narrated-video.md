@@ -1,5 +1,5 @@
 ---
-name: Render a narrated video from a topic
+name: render-a-narrated-video
 description: Turn a topic into a finished narrated vertical video (mp4 plus title/tags kit) with broke2built's async render pipeline, polling the job until it finishes and respecting the one-free-render limit.
 api: openapi/broke2builtai-com-skills-openapi.json
 base_url: https://api.broke2builtai.com

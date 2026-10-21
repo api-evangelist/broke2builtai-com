@@ -1,5 +1,5 @@
 ---
-name: Monitor a target for change
+name: monitor-a-target-for-change
 description: Stand up a 24/7 change-watch on an endpoint, DNS name, page, token supply or wallet with broke2built, receive an optional webhook on change, and read the change history back — knowing that no stop operation is published.
 api: openapi/broke2builtai-com-skills-openapi.json
 base_url: https://api.broke2builtai.com

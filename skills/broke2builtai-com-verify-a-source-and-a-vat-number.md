@@ -1,5 +1,5 @@
 ---
-name: Verify a cited source and an EU VAT number
+name: verify-a-source-and-a-vat-number
 description: Use broke2built's verification skills to prove a cited URL is live and an official publisher, and to validate an EU VAT number against the EC VIES registry — free tier first, x402 only when you exceed it.
 api: openapi/broke2builtai-com-skills-openapi.json
 base_url: https://api.broke2builtai.com

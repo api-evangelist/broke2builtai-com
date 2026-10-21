@@ -1,23 +1,20 @@
 generated: '2026-09-19'
 method: probed
-source: 'https://api.broke2builtai.com/ (root JSON catalog: skills[].price_usd, free_tier, pay) and https://api.broke2builtai.com/.well-known/x402
-  (accepts[].amount in USDC micro-units); https://zero.broke2builtai.com/.well-known/x402 (products[].price_usdc);
-  https://aiim.broke2builtai.com/.well-known/x402 and /api/rates; the npm README tier table (https://registry.npmjs.org/broke2built-skills-mcp);
-  aiim skill.md §9–§10'
+source: https://api.broke2builtai.com/
 docs:
 - https://api.broke2builtai.com/
 - https://zero.broke2builtai.com/llms.txt
 - https://aiim.broke2builtai.com/skill.md
-currency: USD, settled as USDC (Solana for the skills API; Base for ZERO and AIIM); AIIM also has an internal AP
-  unit posted at $0.01
+currency: USD, settled as USDC (Solana for the skills API; Base for ZERO and AIIM); AIIM also has an internal AP unit posted
+  at $0.01
 plan_count: 3
-summary: broke2built publishes no subscription plans. The skills API has three access tiers named in its own README
-  and root catalog — Taste (free, 20 calls/day per IP, no setup), Ally (free, 100 calls/day, one POST to /ally/register)
-  and Unlimited (pay-per-call over x402, no signup) — and every one of the 29 skills carries its own per-call USD
-  price in the machine-readable catalog, so prices are recorded here as read (method probed). ZERO sells 6 pay-per-call
-  endpoints in USDC on Base with no account, key or tier. AIIM is free to join and priced in AP earned by work;
-  its only USD items are three x402 lanes. The Apify actors (transcription, Excel→JSON, Base64) are priced on their
-  Apify listings, which were not parsed — they are marketplace products, not this API.
+summary: broke2built publishes no subscription plans. The skills API has three access tiers named in its own README and root
+  catalog — Taste (free, 20 calls/day per IP, no setup), Ally (free, 100 calls/day, one POST to /ally/register) and Unlimited
+  (pay-per-call over x402, no signup) — and every one of the 29 skills carries its own per-call USD price in the machine-readable
+  catalog, so prices are recorded here as read (method probed). ZERO sells 6 pay-per-call endpoints in USDC on Base with no
+  account, key or tier. AIIM is free to join and priced in AP earned by work; its only USD items are three x402 lanes. The
+  Apify actors (transcription, Excel→JSON, Base64) are priced on their Apify listings, which were not parsed — they are marketplace
+  products, not this API.
 plans:
 - id: skills-taste
   name: Taste (free tier)
@@ -28,6 +25,7 @@ plans:
   included: 20 calls/day per IP across all skills
   how: append &free=1 to any skill call; no key
   observed: a probe with &free=1 on 2026-09-19 returned free:true and taste_calls_left_today:19 in the body
+  price_text: 20 free calls/day per IP
 - id: skills-ally
   name: Ally (free key)
   api: broke2built Agent Skills API
@@ -35,15 +33,16 @@ plans:
   currency: USD
   billing: none
   included: 100 calls/day across all skills; 1 free video render
-  how: POST https://api.broke2builtai.com/ally/register {agent, operator, contact, runs} → key; header X-Ally-Key
-    (an AIIM aiim_sk_ key works too)
+  how: POST https://api.broke2builtai.com/ally/register {agent, operator, contact, runs} → key; header X-Ally-Key (an AIIM
+    aiim_sk_ key works too)
+  price_text: 100 free calls/day
 - id: skills-unlimited
   name: Unlimited (x402 pay-per-call)
   api: broke2built Agent Skills API
-  price: per call, $0.002–$0.01
   currency: USDC on Solana (x402 v2, scheme exact, facilitator https://facilitator.payai.network)
   billing: per call
   included: no cap; no signup, no key, no gas
+  price_text: x402 · Solana mainnet · USDC · no signup, no key, no gas
 per_call_prices:
   skills_api:
     count: 29
@@ -182,8 +181,8 @@ free_allowances:
 - 'skills API: 20/day/IP taste tier; 100/day ally key'
 - A2A message/send on https://api.broke2builtai.com/a2a runs every skill free (agent card description)
 - 'GET /resolver-allowlist is anonymous (security: [] in the OpenAPI); GET /selftest and /health are anonymous'
-- 'ZERO: read /journal, /genesis, /frontier, /ledger, / free; the paid endpoints answer 402 without payment so they
-  can be probed before paying'
+- 'ZERO: read /journal, /genesis, /frontier, /ledger, / free; the paid endpoints answer 402 without payment so they can be
+  probed before paying'
 - 'AIIM: registration, briefing, exchange, products, rooms, DMs, memory all free; rate-limited'
 x-canonical:
   generated: '2026-10-08'
@@ -193,20 +192,32 @@ x-canonical:
   units: []
   plans:
   - name: Taste (free tier)
+    price_text: 20 free calls/day per IP
     access: other
     model: free
     model_how: derived
     units: []
     periods: []
   - name: Ally (free key)
+    price_text: 100 free calls/day
     access: other
     model: free
     model_how: derived
     units: []
     periods: []
   - name: Unlimited (x402 pay-per-call)
+    price_text: x402 · Solana mainnet · USDC · no signup, no key, no gas
     access: other
     model: unstated
     model_how: derived
     units: []
     periods: []
+source_note: 'https://api.broke2builtai.com/ (root JSON catalog: skills[].price_usd, free_tier, pay) and https://api.broke2builtai.com/.well-known/x402
+  (accepts[].amount in USDC micro-units); https://zero.broke2builtai.com/.well-known/x402 (products[].price_usdc); https://aiim.broke2builtai.com/.well-known/x402
+  and /api/rates; the npm README tier table (https://registry.npmjs.org/broke2built-skills-mcp); aiim skill.md §9–§10'
+delivery:
+  delivery: managed
+name: broke2built pricing
+audience: developer-api
+pricing_basis: per-call
+published: true
