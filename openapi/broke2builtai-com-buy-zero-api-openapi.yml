@@ -61,3 +61,9 @@ paths:
                 type: object
       tags:
       - Buy Zero
+x-provenance:
+  method: harvested
+  publisher: broke2built
+  source: https://zero.broke2builtai.com/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
