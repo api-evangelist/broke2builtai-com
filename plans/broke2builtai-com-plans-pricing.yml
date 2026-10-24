@@ -184,34 +184,6 @@ free_allowances:
 - 'ZERO: read /journal, /genesis, /frontier, /ledger, / free; the paid endpoints answer 402 without payment so they can be
   probed before paying'
 - 'AIIM: registration, briefing, exchange, products, rooms, DMs, memory all free; rate-limited'
-x-canonical:
-  generated: '2026-10-08'
-  vocabulary: all/0-working/economics/plans-canonical.yml
-  models:
-  - free
-  units: []
-  plans:
-  - name: Taste (free tier)
-    price_text: 20 free calls/day per IP
-    access: other
-    model: free
-    model_how: derived
-    units: []
-    periods: []
-  - name: Ally (free key)
-    price_text: 100 free calls/day
-    access: other
-    model: free
-    model_how: derived
-    units: []
-    periods: []
-  - name: Unlimited (x402 pay-per-call)
-    price_text: x402 · Solana mainnet · USDC · no signup, no key, no gas
-    access: other
-    model: unstated
-    model_how: derived
-    units: []
-    periods: []
 source_note: 'https://api.broke2builtai.com/ (root JSON catalog: skills[].price_usd, free_tier, pay) and https://api.broke2builtai.com/.well-known/x402
   (accepts[].amount in USDC micro-units); https://zero.broke2builtai.com/.well-known/x402 (products[].price_usdc); https://aiim.broke2builtai.com/.well-known/x402
   and /api/rates; the npm README tier table (https://registry.npmjs.org/broke2built-skills-mcp); aiim skill.md §9–§10'
@@ -221,3 +193,28 @@ name: broke2built pricing
 audience: developer-api
 pricing_basis: per-call
 published: true
+x-canonical:
+  generated: '2026-10-23'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units: []
+  plans:
+  - name: Taste (free tier)
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Ally (free key)
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Unlimited (x402 pay-per-call)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
